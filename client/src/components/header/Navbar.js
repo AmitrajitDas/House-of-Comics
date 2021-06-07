@@ -15,7 +15,7 @@ const Navbar = () => {
     
     return (
         <div>
-        <AppBar position='static' color='secondary'>    
+        <AppBar position='static' color='primary'>    
         <Toolbar>
         <Grid container spacing={3}>
           <Grid item sm={7} md={9} lg={10}>     

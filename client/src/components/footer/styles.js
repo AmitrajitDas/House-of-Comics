@@ -11,7 +11,7 @@ export const useStyles = makeStyles((theme) => ({
     footer: {
         marginTop: '30rem',
         height: '10rem',
-        backgroundColor: '#393e46',
+        backgroundColor: '#232323',
     },
 
     text: {

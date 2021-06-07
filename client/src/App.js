@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 
 import Navbar from './components/header/Navbar'
 import Footer from './components/footer/Footer'
+import HomeScreen from './screens/homescreen/HomeScreen'
 
 const App = () => {
 
@@ -13,8 +14,8 @@ const App = () => {
         fontFamily: '"Alegreya Sans"',
       },
       palette: {
-        primary: { main: '#e4efe7' },
-        secondary: { main: '#8fd9a8' },
+        primary: { main: '#8fd9a8' }, 
+        secondary: { main: '#e4efe7' },
       },
     })
   );
@@ -26,7 +27,7 @@ const App = () => {
         <Navbar />
         <Container>
           <Switch>
-            <h1>Comixology</h1>
+            <Route exact='/' component={HomeScreen} />
           </Switch>
         </Container>
         <Footer />

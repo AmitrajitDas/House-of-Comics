@@ -9,7 +9,7 @@ export const useStyles = makeStyles((theme) => ({
     },
 
     footer: {
-        marginTop: '30rem',
+        marginTop: '15rem',
         height: '10rem',
         backgroundColor: '#232323',
     },

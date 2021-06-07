@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { Link } from 'react-router-dom';
+
 //mui components
 import { AppBar, Toolbar, Button, Typography, IconButton, Grid } from '@material-ui/core'
 
@@ -18,10 +20,12 @@ const Navbar = () => {
         <AppBar position='static' color='primary'>    
         <Toolbar>
         <Grid container spacing={3}>
-          <Grid item sm={7} md={9} lg={10}>     
-          <Typography variant="h4" className={classes.title}>
+          <Grid item sm={7} md={9} lg={10}>
+          <Link to='/' style={{ textDecoration:'none'}}>     
+          <Typography variant="h4" className={classes.title} style={{ color: '#161616'}}>
             ComiXology
           </Typography>
+          </Link>
         </Grid>
         <Grid item sm={5} md={3} lg={2}> 
           <Button color='inherit'><ShoppingCartIcon /></Button>

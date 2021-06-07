@@ -1,4 +1,4 @@
-import { muiThemeProvider, createMuiTheme, responsiveFontSizes, Container} from '@material-ui/core'
+import { MuiThemeProvider, createMuiTheme, responsiveFontSizes, Container} from '@material-ui/core'
 
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 
@@ -10,18 +10,18 @@ const App = () => {
    const theme = responsiveFontSizes(
     createMuiTheme({
       typography: {
-        fontFamily: '"Segoe UI"',
+        fontFamily: '"Alegreya Sans"',
       },
       palette: {
         primary: { main: '#e4efe7' },
-        secondary: { main: '#1eae98' },
+        secondary: { main: '#8fd9a8' },
       },
     })
   );
 
   return (
     <>
-    <muiThemeProvider theme={theme}>
+    <MuiThemeProvider theme={theme}>
       <Router>
         <Navbar />
         <Container>
@@ -31,9 +31,9 @@ const App = () => {
         </Container>
         <Footer />
       </Router>
-    </muiThemeProvider>   
+    </MuiThemeProvider>   
     </>
   );
 }
 
-export default App;
+export default App

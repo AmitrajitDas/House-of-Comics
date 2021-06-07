@@ -3,6 +3,7 @@ import React from 'react'
 import { Typography, Grid } from '@material-ui/core'
 
 import products from '../../products'
+import Product from '../../components/product/Product'
 import { useStyles } from './styles'
 
 const HomeScreen = () => {
@@ -16,10 +17,8 @@ const HomeScreen = () => {
             </Typography>
             <Grid container spacing={3}>
                 {products.map((product) => (
-                    <Grid item lg={4}>
-                        <Typography variant='h6' align='center'>
-                            {product.name}
-                        </Typography>
+                    <Grid key={product._id} item sm={12} md={6} lg={4}>
+                        <Product product={product} />
                     </Grid>
                 ))}
             </Grid>

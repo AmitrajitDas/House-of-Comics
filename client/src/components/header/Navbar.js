@@ -22,14 +22,18 @@ const Navbar = () => {
         <Grid container spacing={3}>
           <Grid item sm={7} md={9} lg={10}>
           <Link to='/' style={{ textDecoration:'none'}}>     
-          <Typography variant="h4" className={classes.title} style={{ color: '#161616'}}>
-            ComiXology
-          </Typography>
+            <Typography variant="h4" className={classes.title} style={{ color: '#161616'}}>
+              House of Comics
+            </Typography>
           </Link>
         </Grid>
         <Grid item sm={5} md={3} lg={2}> 
-          <Button color='inherit'><ShoppingCartIcon /></Button>
-          <Button color='inherit'>Login</Button>
+          <Link to='/' style={{ textDecoration:'none'}}>
+            <Button style={{ color: '#161616'}}>
+              <ShoppingCartIcon />
+            </Button>
+          </Link>
+          <Button style={{ color: '#161616'}}>Login</Button>
         </Grid>
         </Grid>
         </Toolbar>

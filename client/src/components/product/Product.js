@@ -12,20 +12,24 @@ const Product = ({ product }) => {
     const classes= useStyles();
 
     return (
-        <Link to={`/product/${product._id}`} style={{ textDecoration:'none'}}>
+        
         <Card className={classes.root}>
             <CardActionArea>
+            <Link to={`/product/${product._id}`} style={{ textDecoration:'none'}}>
                 <CardMedia 
                 className={classes.cardMedia} 
                 image={product.image} 
                 title={product.name} 
                 component='img' 
                 />
+            </Link>
             </CardActionArea>
                 <CardContent>
-                    <Typography variant='h6' align='center'>
-                        {product.name}
-                    </Typography>
+                    <Link to={`/product/${product._id}`} style={{ textDecoration:'none'}}>
+                        <Typography variant='h6' align='center' style={{ color: '#161616'}}>
+                            {product.name}
+                        </Typography>
+                     </Link>
                     <Typography variant='body1' align='center'>
                     <Rating 
                     value={product.rating} 
@@ -37,7 +41,7 @@ const Product = ({ product }) => {
                     </Typography>
                 </CardContent>
         </Card>
-        </Link>
+        
     )
 }
 

@@ -11,5 +11,6 @@ export const useStyles = makeStyles((theme) => ({
         margin: '2vh',
         width: '15rem',
         height: '22rem'
-    }
+    },
+
 }));

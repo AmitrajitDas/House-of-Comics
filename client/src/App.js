@@ -27,7 +27,7 @@ const App = () => {
         <Navbar />
         <Container>
           <Switch>
-            <Route exact='/' component={HomeScreen} />
+            <Route path='/' component={HomeScreen} />
           </Switch>
         </Container>
         <Footer />

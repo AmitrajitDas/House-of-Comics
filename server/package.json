@@ -6,9 +6,12 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js",
-    "serve": "node index.js" 
+    "start": "node index.js",
+    "server": "nodemon index.js",
+    "client": "npm start --prefix ../client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
+  
   "author": "Amitrajit Das",
   "license": "ISC",
   "dependencies": {
@@ -18,6 +21,7 @@
     "mongoose": "^5.12.12"
   },
   "devDependencies": {
+    "concurrently": "^6.2.0",
     "nodemon": "^2.0.7"
   }
 }

@@ -1,18 +1,29 @@
-import React from 'react'
+import React,{ useState, useEffect } from 'react'
 
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 import { Container, Button, Grid, Typography, Card, Divider } from '@material-ui/core'
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 
-import products from '../../products'
 import Rating from '../../components/rating/Rating'
 import { useStyles } from './styles'
 
 const ProductScreen = ({ match }) => {
 
     const classes = useStyles()
-    const product = products.find(item => item._id === match.params.id)
+    const [product, setProduct] = useState([])
+
+    useEffect(() => {
+        const fetchProduct = async () => {
+            const { data } = await axios.get(`/api/products/${match.params.id}`)
+
+            setProduct(data) 
+        }
+
+        fetchProduct()
+
+    }, [])
 
     return (
        <Container className={classes.wrapper}>

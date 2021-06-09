@@ -1,14 +1,27 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 import { Typography, Grid } from '@material-ui/core'
+import axios from 'axios'
 
-import products from '../../products'
 import Product from '../../components/product/Product'
 import { useStyles } from './styles'
 
 const HomeScreen = () => {
 
     const classes = useStyles()
+    const [products, setProducts] = useState([])
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            const { data } = await axios.get('/api/products')
+
+            setProducts(data)
+        }
+
+        fetchProducts()
+        
+    }, [])
+
 
     return (
         <div className={classes.homewrapper}>

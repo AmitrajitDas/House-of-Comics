@@ -23,7 +23,7 @@ const ProductScreen = ({ match }) => {
 
         fetchProduct()
 
-    }, [])
+    }, [match])
 
     return (
        <Container className={classes.wrapper}>
@@ -65,14 +65,14 @@ const ProductScreen = ({ match }) => {
                <Grid item lg={4}>
                     <Card className={classes.card}>
                         <Grid container>
-                            <Grid item sm={12}>
+                            <Grid item xs={12} sm={12}>
                                 <Grid container>
-                                    <Grid item sm={6}>
+                                    <Grid item xs={6} sm={6}>
                                         <Typography variant='h6' align='center'>
                                             Price:
                                         </Typography>
                                     </Grid>
-                                    <Grid item sm={6}>
+                                    <Grid item xs={6} sm={6}>
                                         <Typography variant='h6' align='center'>
                                             ${product.price}
                                         </Typography>
@@ -80,14 +80,14 @@ const ProductScreen = ({ match }) => {
                                 </Grid>
                                 <Divider />
                             </Grid>
-                            <Grid item sm={12}>
+                            <Grid item xs={12} sm={12}>
                                 <Grid container>
-                                    <Grid item sm={6}>
+                                    <Grid item xs={6} sm={6}>
                                         <Typography variant='h6' align='center'>
                                             Status:
                                         </Typography>
                                     </Grid>
-                                    <Grid item sm={6}>
+                                    <Grid item xs={6} sm={6}>
                                         <Typography variant='h6' align='center'>
                                             { product.countInStock >0 ? 'In Stock' : 'Out of Stock'}
                                         </Typography>
@@ -95,7 +95,7 @@ const ProductScreen = ({ match }) => {
                                 </Grid>
                                 <Divider />
                             </Grid>
-                            <Grid item sm={12} className={classes.addtocartButtonWrapper}>
+                            <Grid item xs={12} sm={12} className={classes.addtocartButtonWrapper}>
                                 <Button className={classes.addtocartButton} disabled={product.countInStock ===0}>
                                     <Typography variant='body1' align='center'>
                                         Add to Cart

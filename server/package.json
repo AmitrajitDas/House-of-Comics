@@ -9,11 +9,14 @@
     "start": "node index.js",
     "server": "nodemon index.js",
     "client": "npm start --prefix ../client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "data:import": "node seeder.js",
+    "data:destroy": "node seeder.js -d"
   },
   "author": "Amitrajit Das",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",

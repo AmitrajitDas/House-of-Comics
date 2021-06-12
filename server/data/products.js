@@ -1,6 +1,5 @@
 const products = [
   {
-    _id: '1',
     name: 'The Amazing Spider-Man (2018)',
     image: '/images/spidey.jpg',
     description:
@@ -13,7 +12,6 @@ const products = [
     numReviews: 12,
   },
   {
-    _id: '2',
     name: 'DC Future State Dark Detective',
     image: '/images/batsy.jpg',
     description:
@@ -26,7 +24,6 @@ const products = [
     numReviews: 8,
   },
   {
-    _id: '3',
     name: 'All Star Superman',
     image: '/images/supes.jpg',
     description:
@@ -39,7 +36,6 @@ const products = [
     numReviews: 12,
   },
   {
-    _id: '4',
     name: 'Daredevil (2019)',
     image: '/images/DD.jpg',
     description:
@@ -52,7 +48,6 @@ const products = [
     numReviews: 12,
   },
   {
-    _id: '5',
     name: 'Nightwing (2016)',
     image: '/images/dick.jpg',
     description:
@@ -65,7 +60,6 @@ const products = [
     numReviews: 10,
   },
   {
-    _id: '6',
     name: 'Red Hood & The Outlaws',
     image: '/images/jason.jpg',
     description:

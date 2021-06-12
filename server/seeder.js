@@ -4,9 +4,9 @@ import dotenv from 'dotenv'
 
 import users from './data/users.js'
 import products from './data/products.js'
-import UserModel from './models/userModel.js'
-import ProductModel from './models/productModel.js'
-import OrderModel from './models/orderModel.js'
+import User from './models/userModel.js'
+import Product from './models/productModel.js'
+import Order from './models/orderModel.js'
 import ConnectDB from './config/db.js'
 
 dotenv.config()
@@ -17,11 +17,11 @@ const importData = async () => {
 
     try {
         
-        await UserModel.deleteMany()
-        await ProductModel.deleteMany()
-        await OrderModel.deleteMany()
+        await User.deleteMany()
+        await Product.deleteMany()
+        await Order.deleteMany()
 
-        const createdUsers = await UserModel.insertMany(users)
+        const createdUsers = await User.insertMany(users)
 
         const adminUser = createdUsers[0]._id
 
@@ -29,7 +29,7 @@ const importData = async () => {
             return { ... product, user: adminUser }
         })
 
-        await ProductModel.insertMany(sampleProducts)
+        await Product.insertMany(sampleProducts)
 
         console.log('Data Transmitted!'.green.inverse)
         process.exit()
@@ -44,9 +44,9 @@ const destroyData = async () => {
 
     try {
         
-        await UserModel.deleteMany()
-        await ProductModel.deleteMany()
-        await OrderModel.deleteMany()
+        await User.deleteMany()
+        await Product.deleteMany()
+        await Order.deleteMany()
 
         console.log('Data Destroyed!'.red.inverse)
         process.exit()

@@ -4,6 +4,9 @@ import { Typography, Grid } from '@material-ui/core'
 
 import Product from '../../components/product/Product'
 import { productListAction } from '../../redux/actions/productListAction'
+import Loader from '../../components/loader/Loader'
+import AlertBox from '../../components/alert/Alert'
+
 import { useStyles } from './styles'
 
 const HomeScreen = () => {
@@ -25,7 +28,11 @@ const HomeScreen = () => {
             <Typography variant='h4'>
                 Latest Releases
             </Typography>
-            {loading ? <h2>Loading...</h2> : error ? <h3>{error}</h3> : 
+            {loading 
+            ? <Loader /> 
+            : error 
+            ? <AlertBox /> 
+            : 
             <Grid container spacing={3}>
                 {products && products.map(product => (
                     <Grid item key={product._id} xs={12} sm={6} md={4} lg={3}>

@@ -9,7 +9,7 @@ const AlertBox = () => {
 
     return (
         <div className={classes.alert}>
-            <Alert severity='error'>Products did not load</Alert>
+            <Alert severity='error'>Error</Alert>
         </div>
     )
 }

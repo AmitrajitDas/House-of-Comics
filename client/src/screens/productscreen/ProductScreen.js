@@ -1,8 +1,19 @@
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import { Container, Button, Grid, Typography, Card, Divider } from '@material-ui/core'
+import { Container, 
+         Button, 
+         Grid, 
+         Typography, 
+         Card, 
+         Divider, 
+         InputLabel, 
+         MenuItem, 
+         FormHelperText, 
+         FormControl, 
+         Select,  } from '@material-ui/core'
+
 import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 
 import Rating from '../../components/rating/Rating'
@@ -12,10 +23,13 @@ import { productDetailsAction } from '../../redux/actions/productDetailsAction'
 
 import { useStyles } from './styles'
 
-const ProductScreen = ({ match }) => {
+const ProductScreen = ({ match, history }) => {
 
     const classes = useStyles()
     const dispatch = useDispatch()
+
+    const [qty, setQty] = useState(0);
+
     const productDetails = useSelector(state => state.productDetails)
 
     const { loading, product, error } = productDetails
@@ -25,6 +39,10 @@ const ProductScreen = ({ match }) => {
         dispatch(productDetailsAction(match.params.id))
 
     }, [match, dispatch])
+
+    const addToCartHandler = () => {
+        history.push(`/cart/${match.params.id}/qty=${qty}`)
+    }
 
     return (
        <Container className={classes.wrapper}>
@@ -100,8 +118,42 @@ const ProductScreen = ({ match }) => {
                                         </Grid>
                                         <Divider />
                                     </Grid>
+                                    { product.countInStock > 0 && (
+                                    <Grid item xs={12} sm={12}>
+                                        <Grid container>
+                                            <Grid item xs={6} sm={6}>
+                                                <Typography variant='h6' align='center' style={{ marginTop: '3vh' }}>
+                                                    Qty
+                                                </Typography>
+                                            </Grid>
+                                            <Grid item xs={6} sm={6}>
+                                                <FormControl variant="outlined" className={classes.formControl}>
+                                                    <InputLabel id="demo-simple-select-outlined-label">Qty</InputLabel>
+                                                    <Select
+                                                    labelId="demo-simple-select-outlined-label"
+                                                    id="demo-simple-select-outlined"
+                                                    value={qty}
+                                                    onChange={(e) => setQty(e.target.value)}
+                                                    label="Age"
+                                                    >
+                                                    {[...Array(product.countInStock).keys()].map(x => (
+                                                        <MenuItem key={x+1} value={x+1}>
+                                                            {x+1}
+                                                        </MenuItem>
+                                                    ))}
+                                                    </Select>
+                                                </FormControl>
+                                            </Grid>
+                                        </Grid>
+                                        <Divider />
+                                    </Grid>
+                                    )}
                                     <Grid item xs={12} sm={12} className={classes.addtocartButtonWrapper}>
-                                        <Button className={classes.addtocartButton} disabled={product.countInStock ===0}>
+                                        <Button 
+                                        className={classes.addtocartButton} 
+                                        disabled={product.countInStock ===0}
+                                        onClick={addToCartHandler}
+                                        >
                                             <Typography variant='body1' align='center'>
                                                 Add to Cart
                                             </Typography>

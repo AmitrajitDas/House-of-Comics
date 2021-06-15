@@ -8,6 +8,7 @@ import Footer from './components/footer/Footer'
 //screens
 import HomeScreen from './screens/homescreen/HomeScreen'
 import ProductScreen from './screens/productscreen/ProductScreen'
+import CartScreen from './screens/cartscreen/CartScreen'
 
 
 const App = () => {
@@ -34,6 +35,7 @@ const App = () => {
           <Switch>
             <Route exact path='/'  component={HomeScreen} />
             <Route exact path='/product/:id'  component={ProductScreen} />
+            <Route exact path='/cart/:id?'  component={CartScreen} />
           </Switch>
         </Container>
         <Footer />

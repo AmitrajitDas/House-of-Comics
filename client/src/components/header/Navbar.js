@@ -28,12 +28,14 @@ const Navbar = () => {
           </Link>
         </Grid>
         <Grid item sm={5} md={3} lg={2}> 
-          <Link to='/' style={{ textDecoration:'none'}}>
+          <Link to='/cart/id?' style={{ textDecoration:'none'}}>
             <Button style={{ color: '#161616'}}>
               <ShoppingCartIcon />
             </Button>
           </Link>
-          <Button style={{ color: '#161616'}}>Login</Button>
+          <Link to='/#' style={{ textDecoration:'none'}}>
+            <Button style={{ color: '#161616'}}>Login</Button>
+          </Link>
         </Grid>
         </Grid>
         </Toolbar>

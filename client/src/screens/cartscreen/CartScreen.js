@@ -15,7 +15,7 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 import DeleteIcon from '@material-ui/icons/Delete';
 import { Link } from 'react-router-dom'
 
-import { addToCartAction } from '../../redux/actions/cartAction'
+import { addToCartAction, removeFromCartAction } from '../../redux/actions/cartAction'
 import { useStyles } from './styles'
 import AlertBox from '../../components/alert/Alert'
 
@@ -31,19 +31,19 @@ const CartScreen = ({ match, location, history }) => {
     const cart = useSelector(state => state.cart)
     const { cartItems } = cart
 
-    const removeFromCartHandler = () => {
-        console.log('remove');
-    }
-
-    const checkoutHandler = () => {
-        history.push('/login?redirect=shipping')
-    }
-
     useEffect(() => {
         if(productId){
             dispatch(addToCartAction(productId, qty))
         }
     },[dispatch, productId, qty])
+
+    const removeFromCartHandler = (productId) => {
+        dispatch(removeFromCartAction(productId))
+    }
+
+    const checkoutHandler = () => {
+        history.push('/login?redirect=shipping')
+    }
 
     return (
         <Container className={classes.wrapper}>
@@ -93,7 +93,7 @@ const CartScreen = ({ match, location, history }) => {
                                 </FormControl>
                             </Grid>
                             <Grid item sm={2}>
-                                <Button onclick={(e) => removeFromCartHandler(item.product)}>
+                                <Button onclick={() => removeFromCartHandler(item.productId)}>
                                     <DeleteIcon />
                                 </Button>
                             </Grid>

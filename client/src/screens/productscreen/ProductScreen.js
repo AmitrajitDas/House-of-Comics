@@ -12,7 +12,7 @@ import { Container,
          MenuItem, 
          FormHelperText, 
          FormControl, 
-         Select,  } from '@material-ui/core'
+         Select  } from '@material-ui/core'
 
 import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 
@@ -134,7 +134,7 @@ const ProductScreen = ({ match, history }) => {
                                                     id="demo-simple-select-outlined"
                                                     value={qty}
                                                     onChange={(e) => setQty(e.target.value)}
-                                                    label="Age"
+                                                    label="QTY"
                                                     >
                                                     {[...Array(product.countInStock).keys()].map(x => (
                                                         <MenuItem key={x+1} value={x+1}>

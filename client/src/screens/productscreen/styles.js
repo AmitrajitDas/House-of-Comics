@@ -4,6 +4,7 @@ export const useStyles = makeStyles((theme) => ({
  
     wrapper: {
         marginTop: '2rem',
+        padding: '2rem'
     },
 
     button: {

@@ -28,8 +28,7 @@ const CartScreen = ({ match, location, history }) => {
 
     const qty = location.search ? Number(location.search.split('=')[1]) : 1
 
-    const cart = useSelector(state => state.cart)
-    const { cartItems } = cart
+    const { cartItems } = useSelector(state => state.cart)
 
     useEffect(() => {
         if(productId){
@@ -84,16 +83,16 @@ const CartScreen = ({ match, location, history }) => {
                                     onChange={(e) => dispatch(addToCartAction(item.productId, Number(e.target.value)))}
                                     label="QTY"
                                 >
-                                {[...Array(item.countInStock).keys()].map(x => (
-                                    <MenuItem key={x+1} value={x+1}>
-                                        {x+1}
+                                {[...Array(item.countInStock).keys()].map(count => (
+                                    <MenuItem key={count+1} value={count+1}>
+                                        {count+1}
                                     </MenuItem>
                                 ))}
                                 </Select>
                                 </FormControl>
                             </Grid>
                             <Grid item sm={2}>
-                                <Button onclick={() => removeFromCartHandler(item.productId)}>
+                                <Button onClick={(e) => removeFromCartHandler(item.productId)}>
                                     <DeleteIcon />
                                 </Button>
                             </Grid>

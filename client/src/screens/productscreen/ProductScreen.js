@@ -136,9 +136,9 @@ const ProductScreen = ({ match, history }) => {
                                                     onChange={(e) => setQty(e.target.value)}
                                                     label="QTY"
                                                     >
-                                                    {[...Array(product.countInStock).keys()].map(x => (
-                                                        <MenuItem key={x+1} value={x+1}>
-                                                            {x+1}
+                                                    {[...Array(product.countInStock).keys()].map(count => (
+                                                        <MenuItem key={count+1} value={count+1}>
+                                                            {count+1}
                                                         </MenuItem>
                                                     ))}
                                                     </Select>

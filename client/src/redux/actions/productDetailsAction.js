@@ -1,6 +1,6 @@
-import axios from 'axios'
-
 import { PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_DETAILS_FAILURE } from '../constants/productDetailsConstants'
+
+import { getProductDetails } from '../../api/fetchProducts'
 
 export const productDetailsAction = (id) => async (dispatch) => {
 
@@ -8,7 +8,7 @@ export const productDetailsAction = (id) => async (dispatch) => {
         
         dispatch({ type: PRODUCT_DETAILS_REQUEST })
 
-        const { data } = await axios.get(`/api/products/${id}`)
+        const { data } = await getProductDetails(id)
 
         dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data })
 

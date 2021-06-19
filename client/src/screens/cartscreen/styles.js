@@ -51,4 +51,8 @@ export const useStyles = makeStyles((theme) => ({
         },
     },
 
+    deleteButton: {
+        color: theme.palette.alternate.main,
+    }
+
 }));

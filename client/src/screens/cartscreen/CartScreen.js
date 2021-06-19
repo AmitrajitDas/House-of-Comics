@@ -4,7 +4,8 @@ import {Container,
         Grid, 
         Typography, 
         Divider, 
-        Button, 
+        Button,
+        IconButton, 
         Card,
         InputLabel, 
         MenuItem, 
@@ -92,9 +93,9 @@ const CartScreen = ({ match, location, history }) => {
                                 </FormControl>
                             </Grid>
                             <Grid item sm={2}>
-                                <Button onClick={(e) => removeFromCartHandler(item.productId)}>
-                                    <DeleteIcon />
-                                </Button>
+                                <IconButton onClick={() => removeFromCartHandler(item.productId)}>
+                                    <DeleteIcon className={classes.deleteButton} />
+                                </IconButton>
                             </Grid>
                         </Grid>
                     )))}

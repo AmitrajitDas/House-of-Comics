@@ -24,3 +24,28 @@ export const userLogin = asyncHandler( async(req, res) => {
             res.status(401).send('Invalid User! check email and password again')
         }
 })
+
+// @desc Get user profile
+// @route POST /api/user/profile
+// @access Private
+
+export const getUserProfile = asyncHandler( async(req, res) => {
+
+    const user = await User.findById(req.user._id)
+
+    if(user){
+
+        res.json({
+            _id: user._id,
+            name: user.name,
+            password: user.password,
+            isAdmin: user.isAdmin
+        })
+
+    } else {
+
+        res.status(404)
+        throw new Error('User not found!')
+
+    }
+})

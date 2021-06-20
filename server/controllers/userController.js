@@ -1,5 +1,6 @@
 import asyncHandler from 'express-async-handler'
 import User from '../models/userModel.js'
+import generateAuthToken from '../utils/token.js'
 
 // @desc Authenticate users and get tokens
 // @route POST /api/user/login
@@ -17,7 +18,7 @@ export const userLogin = asyncHandler( async(req, res) => {
             name: user.name,
             password: user.password,
             isAdmin: user.isAdmin,
-            token: null
+            token: generateAuthToken(user._id)
         })
         } else {
             res.status(401).send('Invalid User! check email and password again')

@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/products', productRoutes)
-app.use('/api/user', userRoutes)
+app.use('/api/auth', userRoutes)
 
 app.use(notFound)
 app.use(errorHandler)

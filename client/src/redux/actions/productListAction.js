@@ -1,6 +1,6 @@
 import { PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_LIST_FAILURE } from '../constants/productListConstants'
 
-import { getProducts } from '../../api/fetchProducts'
+import { getProducts } from '../../api/products'
 
 export const productListAction = () => async (dispatch) => {
 

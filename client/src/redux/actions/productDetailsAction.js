@@ -1,6 +1,6 @@
 import { PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_DETAILS_FAILURE } from '../constants/productDetailsConstants'
 
-import { getProductDetails } from '../../api/fetchProducts'
+import { getProductDetails } from '../../api/products'
 
 export const productDetailsAction = (id) => async (dispatch) => {
 

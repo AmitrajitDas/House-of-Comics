@@ -1,4 +1,4 @@
-import { MuiThemeProvider, createMuiTheme, responsiveFontSizes, Container} from '@material-ui/core'
+import { MuiThemeProvider, createMuiTheme, responsiveFontSizes, Container, Paper } from '@material-ui/core'
 
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 
@@ -19,6 +19,7 @@ const App = () => {
         fontFamily: '"Alegreya Sans"',
       },
       palette: {
+        // type: 'dark',
         primary: { main: '#8fd9a8', secondary: '#7eca9c'}, 
         secondary: { main: '#ffffff' },
         alternate: { main: '#161616', secondary: '#393e46'},
@@ -29,6 +30,7 @@ const App = () => {
   return (
     <>
     <MuiThemeProvider theme={theme}>
+    <Paper>
       <Router>
         <Navbar />
         <Container>
@@ -40,6 +42,7 @@ const App = () => {
         </Container>
         <Footer />
       </Router>
+    </Paper>
     </MuiThemeProvider>   
     </>
   );

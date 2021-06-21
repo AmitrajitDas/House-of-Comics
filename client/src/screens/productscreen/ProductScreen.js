@@ -54,7 +54,7 @@ const ProductScreen = ({ match, history }) => {
            { loading 
            ? <Loader />
            : error 
-           ? <AlertBox />
+           ? <AlertBox alert='There was a problem getting product details' />
            : <div className={classes.productWrapper}>
                 <Grid container spacing={2}>
                     <Grid item lg={4}>

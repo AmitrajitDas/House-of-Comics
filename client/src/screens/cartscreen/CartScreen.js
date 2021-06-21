@@ -56,7 +56,7 @@ const CartScreen = ({ match, location, history }) => {
                 <Grid container spacing={3}>
                     <Grid item sm={8}>
                     { cartItems.length === 0 ? (
-                        <AlertBox error='Cart is Empty'  />
+                        <AlertBox alert='Cart is Empty'  />
                     )  
                     : 
                     (cartItems.map(item => (

@@ -9,7 +9,7 @@ import AlertBox from '../../components/alert/Alert'
 
 import { useStyles } from './styles'
 
-const HomeScreen = (props) => {
+const HomeScreen = () => {
 
     const classes = useStyles()
     const dispatch = useDispatch()
@@ -31,7 +31,7 @@ const HomeScreen = (props) => {
             {loading 
             ? <Loader /> 
             : error 
-            ? <AlertBox error='Products not found' /> 
+            ? <AlertBox alert='Products not found' /> 
             : 
             <Grid container spacing={3}>
                 {products && products.map(product => (

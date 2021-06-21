@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import { AppBar, Toolbar, Button, Typography, IconButton, Grid } from '@material-ui/core'
 
 //mui icons
-import MenuIcon from '@material-ui/icons/Menu'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 import { useStyles } from './styles'
@@ -14,7 +13,7 @@ import { useStyles } from './styles'
 const Navbar = () => {
     
     const classes = useStyles()
-    
+
     return (
         <div>
         <AppBar position='static' color='primary'>    
@@ -29,11 +28,11 @@ const Navbar = () => {
         </Grid>
         <Grid item sm={5} md={3} lg={2}> 
           <Link to='/cart/id?' style={{ textDecoration:'none'}}>
-            <Button style={{ color: '#161616'}}>
+            <IconButton style={{ color: '#161616'}}>
               <ShoppingCartIcon />
-            </Button>
+            </IconButton>
           </Link>
-          <Link to='/#' style={{ textDecoration:'none'}}>
+          <Link to='/login' style={{ textDecoration:'none'}}>
             <Button style={{ color: '#161616'}}>Login</Button>
           </Link>
         </Grid>

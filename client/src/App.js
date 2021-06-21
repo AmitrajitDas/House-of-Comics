@@ -9,7 +9,7 @@ import Footer from './components/footer/Footer'
 import HomeScreen from './screens/homescreen/HomeScreen'
 import ProductScreen from './screens/productscreen/ProductScreen'
 import CartScreen from './screens/cartscreen/CartScreen'
-
+import LoginScreen from './screens/loginscreen/LoginScreen'
 
 const App = () => {
 
@@ -36,8 +36,9 @@ const App = () => {
         <Container>
           <Switch>
             <Route path='/' exact component={HomeScreen} />
-            <Route path='/product/:id'  component={ProductScreen} />
-            <Route path='/cart/:id?'  component={CartScreen} />
+            <Route path='/product/:id' component={ProductScreen} />
+            <Route path='/cart/:id?' component={CartScreen} />
+            <Route path='/login' component={LoginScreen} />
           </Switch>
         </Container>
         <Footer />

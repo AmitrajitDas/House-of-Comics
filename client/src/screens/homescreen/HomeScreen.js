@@ -14,9 +14,7 @@ const HomeScreen = () => {
     const classes = useStyles()
     const dispatch = useDispatch()
 
-    const productList = useSelector(state => state.productList)
-
-    const { loading, products, error } = productList
+    const { loading, products, error } = useSelector(state => state.productList)
 
     useEffect(() => {
         dispatch(productListAction())

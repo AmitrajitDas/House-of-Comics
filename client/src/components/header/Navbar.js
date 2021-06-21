@@ -39,7 +39,7 @@ const Navbar = () => {
         </Grid>
         </Toolbar>
       </AppBar>
-        </div>
+      </div>
     )
 }
 

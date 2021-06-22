@@ -64,7 +64,7 @@ const CartScreen = ({ match, location, history }) => {
                             <Grid item sm={3}>
                                 <img className={classes.image} src={item.image} alt={item.name} />
                             </Grid>
-                            <Grid item sm={3}>
+                            <Grid item xs={12} sm={3}>
                                 <Typography variant='h6'>
                                     {item.name}
                                 </Typography>

@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-
+import { useDispatch } from 'react-redux'
 import { 
     ClickAwayListener, 
     Grow, 
@@ -12,11 +12,14 @@ import {
 
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown'
 
+import { userLogoutAction } from '../../redux/actions/authAction'
 import { useStyles } from './styles'
 
 const UserInfo = ({ userData }) => {
 
     const classes = useStyles()
+    const dispatch = useDispatch()
+
     const [open, setOpen] = useState(false)
     const anchorRef = useRef(null)
 
@@ -41,7 +44,7 @@ const UserInfo = ({ userData }) => {
 
     // return focus to the button when we transitioned from !open -> open
     const prevOpen = useRef(open)
-    
+
     useEffect(() => {
         if (prevOpen.current === true && open === false) {
         anchorRef.current.focus()
@@ -50,6 +53,12 @@ const UserInfo = ({ userData }) => {
         prevOpen.current = open;
 
     }, [open]);
+
+    const logoutHandler = () => {
+
+        dispatch(userLogoutAction())
+
+    }
 
     return (
         <div>
@@ -73,7 +82,7 @@ const UserInfo = ({ userData }) => {
                     <ClickAwayListener onClickAway={handleClose}>
                     <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
                         <MenuItem onClick={handleClose}>Profile</MenuItem>
-                        <MenuItem onClick={handleClose}>Logout</MenuItem>
+                        <MenuItem onClick={logoutHandler}>Logout</MenuItem>
                     </MenuList>
                     </ClickAwayListener>
                 </Paper>

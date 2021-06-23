@@ -10,3 +10,5 @@ const config = {
 }
 
 export const userLogin = (email, password) => API.post('/login', {email, password}, config)
+
+export const userRegister = (name, email, password) => API.post('/signup', {name, email, password}, config)

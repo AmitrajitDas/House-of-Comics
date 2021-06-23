@@ -5,32 +5,40 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 
 import Loader from '../../components/loader/Loader'
 import AlertBox from '../../components/alert/Alert'
-import { userLoginAction } from '../../redux/actions/userLoginAction'
+import { userRegisterAction } from '../../redux/actions/userRegisterAction'
 import { useStyles } from './styles';
 
-const LoginScreen = ({ location, history }) => {
+const SignupScreen = ({ location, history }) => {
     
     const classes = useStyles()
     const dispatch = useDispatch()
 
+    const [name, setName ] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [confirmPassword, setConfirmPassword] = useState('')
+    const [message, setMessage] = useState('')
 
-    const { loading, userData, error } = useSelector(state => state.userLogin)
+    const { loading, userData, error } = useSelector(state => state.userRegister)
 
     const redirect = location.search ? location.search.split('=')[1] : '/'
 
     useEffect(() => {
         
         if(userData) {
-            history.push(redirect)
+            history.push('/login')
         }
 
     }, [userData, history, redirect])
 
     const submitHandler = (e) => {
         e.preventDefault()
-        dispatch(userLoginAction(email, password))
+        if(password !== confirmPassword){
+            setMessage("Password doesn't match")
+        } else {
+            dispatch(userRegisterAction(name, email, password))
+        }
+        
     }
 
   return (
@@ -41,11 +49,25 @@ const LoginScreen = ({ location, history }) => {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Sign Up
         </Typography>
-        { error && <AlertBox alert='Invalid email or password' /> }
+        { message && <AlertBox alert={message} /> }
+        { error && <AlertBox alert={error} /> }
         { loading && <Loader /> }
         <form className={classes.form} noValidate onSubmit={submitHandler}>
+         <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="name"
+            label="Name"
+            name="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            autoComplete="name"
+            autoFocus
+          />
           <TextField
             variant="outlined"
             margin="normal"
@@ -57,7 +79,6 @@ const LoginScreen = ({ location, history }) => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             autoComplete="email"
-            autoFocus
           />
           <TextField
             variant="outlined"
@@ -70,11 +91,18 @@ const LoginScreen = ({ location, history }) => {
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            autoComplete="current-password"
           />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="confirm password"
+            label="Confirm Password"
+            type="password"
+            id="confirm password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
           />
           <Button
             type="submit"
@@ -83,16 +111,11 @@ const LoginScreen = ({ location, history }) => {
             color="primary"
             className={classes.submit}
           >
-            Sign In
+            Register
           </Button>
           <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
             <Grid item>
-              <Link href={ redirect ? `/signup?redirect=${redirect}` : '/signup'} variant="body2">
+              <Link href={ redirect ? `/login?redirect=${redirect}` : '/login'} variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>
@@ -103,4 +126,4 @@ const LoginScreen = ({ location, history }) => {
   );
 }
 
-export default LoginScreen
+export default SignupScreen

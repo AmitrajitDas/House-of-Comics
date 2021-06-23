@@ -12,7 +12,7 @@ import {
 
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown'
 
-import { userLogoutAction } from '../../redux/actions/authAction'
+import { userLogoutAction } from '../../redux/actions/userLoginAction'
 import { useStyles } from './styles'
 
 const UserInfo = ({ userData }) => {

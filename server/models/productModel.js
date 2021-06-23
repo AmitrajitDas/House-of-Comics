@@ -13,7 +13,7 @@ const productSchema = mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
-        red: 'User'
+        ref: 'User'
     },
 
     name: {

@@ -69,7 +69,7 @@ const UserInfo = ({ userData }) => {
             onClick={handleToggle}
             style={{ color: '#161616', marginTop: '5px'}}
             >
-                {userData.name}
+                {userData.name.split(' ')[0]}
                 <ArrowDropDownIcon />
             </Button>
             <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>

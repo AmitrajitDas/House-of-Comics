@@ -4,7 +4,7 @@ import {    USER_DETAILS_REQUEST,
         } from '../constants/authConstants'
         
 
-export const userDetailsReducer = ( state = { user: {} }, action) => {
+export const userDetailsReducer = ( state = { profileData: {} }, action) => {
     switch(action.type){
         case USER_DETAILS_REQUEST:
             return {...state, loading: true }

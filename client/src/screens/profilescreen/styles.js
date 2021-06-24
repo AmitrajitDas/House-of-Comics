@@ -19,10 +19,18 @@ export const useStyles = makeStyles((theme) => ({
     },
     form: {
         width: '100%',
-        marginTop: theme.spacing(1),
+        marginTop: theme.spacing(5),
     },
     submit: {
         margin: theme.spacing(3, 0, 2),
+    },
+
+    divider: {
+        marginTop: '5rem'
+    },
+
+    orderHeader: {
+        marginTop: '2rem',
     },
 
 }));

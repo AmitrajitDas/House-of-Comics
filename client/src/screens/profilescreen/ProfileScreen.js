@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Link, Checkbox, Grid, Typography, Container } from '@material-ui/core'
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
+import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Link, Checkbox, Grid, Typography, Container, Divider } from '@material-ui/core'
+import PersonAddRoundedIcon from '@material-ui/icons/PersonAddRounded'
 
 import Loader from '../../components/loader/Loader'
 import AlertBox from '../../components/alert/Alert'
@@ -53,9 +53,12 @@ const ProfileScreen = ({ location, history }) => {
     }
 
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
+    <Grid container spacing={5}>
+      <Grid item md={3}>
       <div className={classes.paper}>
+        <Typography variant='h4'>
+          Update Profile
+        </Typography>
         { message && <AlertBox alert={message} /> }
         { error && <AlertBox alert={error} /> }
         { loading && <Loader /> }
@@ -120,7 +123,15 @@ const ProfileScreen = ({ location, history }) => {
           </Button>
         </form>
       </div>
-    </Container>
+      </Grid>
+      <Divider orientation='vertical' variant='fullWidth' flexItem className={classes.divider} />
+      <Grid item md={8} className={classes.wrapper}>
+        <Typography variant='h4' className={classes.orderHeader}>
+          Placed Orders
+        </Typography>
+      </Grid>
+    </Grid>
+
   );
 }
 

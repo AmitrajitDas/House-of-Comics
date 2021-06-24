@@ -1,7 +1,8 @@
 import { USER_DETAILS_REQUEST, USER_DETAILS_SUCCESS, USER_DETAILS_FAILURE } from '../constants/authConstants'
-import { getUserProfile } from '../../api/users'
+// import { getUserProfile } from '../../api/users'
+import axios from 'axios';
 
-export const userRegisterAction = (id) => async(dispatch, getState) => {
+export const userDetailsAction = (id) => async(dispatch, getState) => {
 
     try {
         
@@ -11,20 +12,22 @@ export const userRegisterAction = (id) => async(dispatch, getState) => {
 
         const { userLogin: { userData } } = getState()
 
-        if(userData){
+        const config = {
 
-            const { data } = await getUserProfile(id, userData.token)
+        headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${userData.token} `, 
+            },
+        }
 
-            dispatch({
+        const { data } = await axios.get(`http://localhost:5000/api/auth/${id}`, config)
+        console.log(data)
+
+        dispatch({
             type: USER_DETAILS_SUCCESS,
             payload: data
             })
-
-        } else {
-
-            throw new Error('Oops! Something went wrong')
-
-        }
+    
 
     } catch (error) {
         

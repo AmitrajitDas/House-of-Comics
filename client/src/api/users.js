@@ -14,15 +14,19 @@ export const userLogin = (email, password) => API.post('/login', {email, passwor
 export const userRegister = (name, email, password) => API.post('/signup', {name, email, password}, config)
 
 export const getUserProfile = (id, token) => {
-    
+
     const config = {
 
-            headers: {
+        headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${token} `, 
             },
         }
-    
-    
-    API.get(`/${id}`, config )
+
+        
+        API.get(`/${id}`, config)
+
+
 }
+        
+        

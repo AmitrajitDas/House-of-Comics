@@ -1,11 +1,25 @@
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Link, Checkbox, Grid, Typography, Container, Divider } from '@material-ui/core'
+import {Avatar, 
+        Button, 
+        CssBaseline, 
+        TextField, 
+        FormControlLabel, 
+        Link, 
+        Checkbox, 
+        Grid, 
+        Typography, 
+        Container, 
+        Divider,
+        Alert 
+      } from '@material-ui/core'
 import PersonAddRoundedIcon from '@material-ui/icons/PersonAddRounded'
 
 import Loader from '../../components/loader/Loader'
-import AlertBox from '../../components/alert/Alert'
+import RedAlertBox from '../../components/alert/RedAlert'
+import GreenAlertBox from '../../components/alert/GreenAlert'
 import { userDetailsAction } from '../../redux/actions/userDetailsAction'
+import { updateProfileAction } from '../../redux/actions/updateProfileAction'
 import { useStyles } from './styles';
 
 const ProfileScreen = ({ location, history }) => {
@@ -19,13 +33,16 @@ const ProfileScreen = ({ location, history }) => {
     const [confirmPassword, setConfirmPassword] = useState('')
     const [message, setMessage] = useState('')
 
-     const userDetails = useSelector(state => state.userDetails)
+    const userDetails = useSelector(state => state.userDetails)
+    const { loading, profileData, error } = userDetails
 
-     const { loading, profileData, error } = userDetails
+    console.log(profileData);
 
     const userLogin = useSelector(state => state.userLogin)
-
     const { userData } = userLogin
+
+    const updateProfile = useSelector(state => state.updateProfile)
+    const { success } = updateProfile
 
      useEffect(() => {
         
@@ -47,7 +64,7 @@ const ProfileScreen = ({ location, history }) => {
         if(password !== confirmPassword){
             setMessage("Password doesn't match")
         } else {
-            
+            dispatch(updateProfileAction({ id: profileData._id, name, email, password }))
         }
         
     }
@@ -57,10 +74,11 @@ const ProfileScreen = ({ location, history }) => {
       <Grid item md={3}>
       <div className={classes.paper}>
         <Typography variant='h4'>
-          Update Profile
+          User Profile
         </Typography>
-        { message && <AlertBox alert={message} /> }
-        { error && <AlertBox alert={error} /> }
+        { message && <RedAlertBox alert={message} /> }
+        { success && <GreenAlertBox alert={'User updated successfully'} /> }
+        { error && <RedAlertBox alert={error} /> }
         { loading && <Loader /> }
         <form className={classes.form} noValidate onSubmit={submitHandler}>
          <TextField

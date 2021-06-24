@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Link, Checkbox, Grid, Typography, Container } from '@material-ui/core'
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined' 
 
 import Loader from '../../components/loader/Loader'
 import AlertBox from '../../components/alert/Alert'
@@ -16,7 +16,9 @@ const LoginScreen = ({ location, history }) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    const { loading, userData, error } = useSelector(state => state.userLogin)
+    const userLogin = useSelector(state => state.userLogin)
+
+    const { loading, userData, error } = userLogin
 
     const redirect = location.search ? location.search.split('=')[1] : '/'
 
@@ -36,7 +38,7 @@ const LoginScreen = ({ location, history }) => {
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
-      <div className={classes.paper}>
+      <div Paper className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>

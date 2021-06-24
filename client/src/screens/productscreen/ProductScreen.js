@@ -60,7 +60,7 @@ const ProductScreen = ({ match, history }) => {
                     <Grid item lg={4}>
                         <img className={classes.image} src={product.image} alt={product.name} />
                     </Grid>
-                    <Grid item lg={4}>
+                    <Grid item lg={5}>
                         <Grid container className={classes.detailWrapper} spacing={3}>
                             <Grid item sm={12}>
                             <Typography variant='h4' align='center'>
@@ -85,7 +85,7 @@ const ProductScreen = ({ match, history }) => {
                         </Grid>
                         </Grid>
                     </Grid>
-                    <Grid item lg={4}>
+                    <Grid item lg={3}>
                             <Card className={classes.card}>
                                 <Grid container>
                                     <Grid item xs={12} sm={12}>

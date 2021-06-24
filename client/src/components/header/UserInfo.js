@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { 
     ClickAwayListener, 
@@ -7,10 +8,11 @@ import {
     Popper, 
     MenuItem, 
     MenuList,
-    Button 
+    Button
     } from '@material-ui/core'
 
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown'
+import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 
 import { userLogoutAction } from '../../redux/actions/userLoginAction'
 import { useStyles } from './styles'
@@ -69,6 +71,7 @@ const UserInfo = ({ userData }) => {
             onClick={handleToggle}
             style={{ color: '#161616', marginTop: '5px'}}
             >
+                <AccountCircleIcon  style={{ marginRight: '10px'}} />
                 {userData.name.split(' ')[0]}
                 <ArrowDropDownIcon />
             </Button>
@@ -81,7 +84,7 @@ const UserInfo = ({ userData }) => {
                 <Paper>
                     <ClickAwayListener onClickAway={handleClose}>
                     <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-                        <MenuItem onClick={handleClose}>Profile</MenuItem>
+                        <Link to='/profile' style={{ textDecoration: 'none', color: '#161616'}}><MenuItem onClick={handleClose}>Profile</MenuItem></Link>
                         <MenuItem onClick={logoutHandler}>Logout</MenuItem>
                     </MenuList>
                     </ClickAwayListener>

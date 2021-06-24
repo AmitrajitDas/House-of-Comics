@@ -29,7 +29,7 @@ const SignupScreen = ({ location, history }) => {
             history.push('/login')
         }
 
-    }, [userData, history, redirect])
+    }, [ userData, history ])
 
     const submitHandler = (e) => {
         e.preventDefault()

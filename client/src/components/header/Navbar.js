@@ -28,8 +28,8 @@ const Navbar = () => {
         <div>
         <AppBar position='static' color='primary'>    
         <Toolbar>
-        <Grid container spacing={3}>
-          <Grid item sm={4} md={6} lg={9}>
+        <Grid container spacing={1}>
+          <Grid item sm={4} md={6} lg={10}>
           <Link to='/' style={{ textDecoration:'none'}}>     
             <Typography variant="h4" className={classes.title} style={{ color: '#161616'}}>
               House of Comics
@@ -43,7 +43,7 @@ const Navbar = () => {
             </IconButton>
           </Link>
         </Grid>
-        <Grid item sm={4} md={3} lg={2}>
+        <Grid item sm={4} md={3} lg={1}>
           { userData 
           ? (
             <UserInfo userData={userData} />

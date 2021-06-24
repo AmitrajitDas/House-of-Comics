@@ -18,7 +18,7 @@ import { Link } from 'react-router-dom'
 
 import { addToCartAction, removeFromCartAction } from '../../redux/actions/cartAction'
 import { useStyles } from './styles'
-import AlertBox from '../../components/alert/Alert'
+import RedAlertBox from '../../components/alert/RedAlert'
 
 const CartScreen = ({ match, location, history }) => {
 
@@ -56,7 +56,7 @@ const CartScreen = ({ match, location, history }) => {
                 <Grid container spacing={3}>
                     <Grid item sm={8}>
                     { cartItems.length === 0 ? (
-                        <AlertBox alert='Cart is Empty'  />
+                        <RedAlertBox alert='Cart is Empty'  />
                     )  
                     : 
                     (cartItems.map(item => (

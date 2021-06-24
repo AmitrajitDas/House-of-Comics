@@ -33,4 +33,12 @@ export const useStyles = makeStyles((theme) => ({
         marginTop: '2rem',
     },
 
+    alert: {
+    width: '100%',
+    '& > * + *': {
+      marginTop: theme.spacing(2),
+    },
+  },
+
+
 }));

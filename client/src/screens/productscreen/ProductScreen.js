@@ -18,7 +18,7 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 
 import Rating from '../../components/rating/Rating'
 import Loader from '../../components/loader/Loader'
-import AlertBox from '../../components/alert/Alert'
+import RedAlertBox from '../../components/alert/RedAlert'
 import { productDetailsAction } from '../../redux/actions/productDetailsAction'
 
 import { useStyles } from './styles'
@@ -54,7 +54,7 @@ const ProductScreen = ({ match, history }) => {
            { loading 
            ? <Loader />
            : error 
-           ? <AlertBox alert='There was a problem getting product details' />
+           ? <RedAlertBox alert='There was a problem getting product details' />
            : <div className={classes.productWrapper}>
                 <Grid container spacing={2}>
                     <Grid item lg={4}>

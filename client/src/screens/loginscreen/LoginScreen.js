@@ -4,7 +4,7 @@ import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Link, Checkbo
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined' 
 
 import Loader from '../../components/loader/Loader'
-import AlertBox from '../../components/alert/Alert'
+import RedAlertBox from '../../components/alert/RedAlert'
 import { userLoginAction } from '../../redux/actions/userLoginAction'
 import { useStyles } from './styles';
 
@@ -45,7 +45,7 @@ const LoginScreen = ({ location, history }) => {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        { error && <AlertBox alert='Invalid email or password' /> }
+        { error && <RedAlertBox alert='Invalid email or password' /> }
         { loading && <Loader /> }
         <form className={classes.form} noValidate onSubmit={submitHandler}>
           <TextField

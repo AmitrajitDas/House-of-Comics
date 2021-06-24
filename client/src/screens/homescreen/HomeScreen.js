@@ -5,7 +5,7 @@ import { Typography, Grid } from '@material-ui/core'
 import Product from '../../components/product/Product'
 import { productListAction } from '../../redux/actions/productListAction'
 import Loader from '../../components/loader/Loader'
-import AlertBox from '../../components/alert/Alert'
+import RedAlertBox from '../../components/alert/RedAlert'
 
 import { useStyles } from './styles'
 
@@ -29,7 +29,7 @@ const HomeScreen = () => {
             {loading 
             ? <Loader /> 
             : error 
-            ? <AlertBox alert='Products not found' /> 
+            ? <RedAlertBox alert='Products not found' /> 
             : 
             <Grid container spacing={3}>
                 {products && products.map(product => (

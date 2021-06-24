@@ -4,7 +4,8 @@ import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Link, Checkbo
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 
 import Loader from '../../components/loader/Loader'
-import AlertBox from '../../components/alert/Alert'
+import RedAlertBox from '../../components/alert/RedAlert'
+import GreenAlertBox from '../../components/alert/GreenAlert'
 import { userRegisterAction } from '../../redux/actions/userRegisterAction'
 import { useStyles } from './styles';
 
@@ -19,7 +20,8 @@ const SignupScreen = ({ location, history }) => {
     const [confirmPassword, setConfirmPassword] = useState('')
     const [message, setMessage] = useState('')
 
-    const { loading, userData, error } = useSelector(state => state.userRegister)
+     const userRegister = useSelector(state => state.userRegister)
+     const { loading, userData, success, error } = userRegister
 
     const redirect = location.search ? location.search.split('=')[1] : '/'
 
@@ -51,8 +53,9 @@ const SignupScreen = ({ location, history }) => {
         <Typography component="h1" variant="h5">
           Sign Up
         </Typography>
-        { message && <AlertBox alert={message} /> }
-        { error && <AlertBox alert={error} /> }
+        { success && <GreenAlertBox alert={'User created successfully'} /> }
+        { message && <RedAlertBox alert={message} /> }
+        { error && <RedAlertBox alert={error} /> }
         { loading && <Loader /> }
         <form className={classes.form} noValidate onSubmit={submitHandler}>
          <TextField

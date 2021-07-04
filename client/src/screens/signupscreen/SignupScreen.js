@@ -1,8 +1,22 @@
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Link, Checkbox, Grid, Typography, Container } from '@material-ui/core'
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
+import {Avatar, 
+        Button, 
+        CssBaseline, 
+        TextField, 
+        FormControlLabel, 
+        Link, 
+        Checkbox, 
+        Grid, 
+        Typography, 
+        Container,
+        IconButton,
+        InputAdornment 
+        } from '@material-ui/core'
 
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
+import VisibilityIcon from '@material-ui/icons/Visibility'
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff'
 import Loader from '../../components/loader/Loader'
 import RedAlertBox from '../../components/alert/RedAlert'
 import GreenAlertBox from '../../components/alert/GreenAlert'
@@ -18,6 +32,8 @@ const SignupScreen = ({ location, history }) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
+    const [showPassword, setShowPassword] = useState(false)
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false)
     const [message, setMessage] = useState('')
 
      const userRegister = useSelector(state => state.userRegister)
@@ -90,10 +106,21 @@ const SignupScreen = ({ location, history }) => {
             fullWidth
             name="password"
             label="Password"
-            type="password"
+            type={showPassword ? "text" : "password"}
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            InputProps={{
+            endAdornment: (
+                <InputAdornment position="end">
+                    <IconButton 
+                    onClick={() => setShowPassword(!showPassword)}
+                    onMouseDown={() => setShowPassword(!showPassword)}
+                    >
+                    {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                    </IconButton>
+                </InputAdornment>
+            )}}
           />
           <TextField
             variant="outlined"
@@ -102,10 +129,21 @@ const SignupScreen = ({ location, history }) => {
             fullWidth
             name="confirm password"
             label="Confirm Password"
-            type="password"
+            type={showPassword ? "text" : "password"}
             id="confirm password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
+            InputProps={{
+            endAdornment: (
+                <InputAdornment position="end">
+                    <IconButton 
+                    onClick={() => setShowPassword(!showPassword)}
+                    onMouseDown={() => setShowPassword(!showPassword)}
+                    >
+                    {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                    </IconButton>
+                </InputAdornment>
+            )}}
           />
           <Button
             type="submit"

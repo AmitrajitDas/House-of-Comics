@@ -1,7 +1,21 @@
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Link, Checkbox, Grid, Typography, Container } from '@material-ui/core'
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined' 
+import {Avatar, 
+        Button, 
+        CssBaseline, 
+        TextField, 
+        FormControlLabel, 
+        Link, 
+        Checkbox, 
+        Grid, 
+        Typography, 
+        Container,
+        InputAdornment,
+        IconButton 
+        } from '@material-ui/core'
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
+import VisibilityIcon from '@material-ui/icons/Visibility'
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff' 
 
 import Loader from '../../components/loader/Loader'
 import RedAlertBox from '../../components/alert/RedAlert'
@@ -15,6 +29,7 @@ const LoginScreen = ({ location, history }) => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [showPassword, setShowPassword] = useState(false)
 
     const userLogin = useSelector(state => state.userLogin)
 
@@ -68,11 +83,22 @@ const LoginScreen = ({ location, history }) => {
             fullWidth
             name="password"
             label="Password"
-            type="password"
+            type={showPassword ? "text" : "password"}
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             autoComplete="current-password"
+            InputProps={{
+            endAdornment: (
+                <InputAdornment position="end">
+                    <IconButton 
+                    onClick={() => setShowPassword(!showPassword)}
+                    onMouseDown={() => setShowPassword(!showPassword)}
+                    >
+                    {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                    </IconButton>
+                </InputAdornment>
+            )}}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}

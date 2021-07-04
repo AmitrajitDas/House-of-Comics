@@ -19,6 +19,7 @@ import LocalShippingIcon from '@material-ui/icons/LocalShipping'
 import Loader from '../../components/loader/Loader'
 import RedAlertBox from '../../components/alert/RedAlert'
 
+import CheckOutSteps from '../../components/checkout/CheckOutSteps'
 import { saveShippingAddressAction } from '../../redux/actions/cartAction'
 import { useStyles } from './styles';
 
@@ -45,6 +46,7 @@ const LoginScreen = ({ location, history }) => {
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div Paper className={classes.paper}>
+        <CheckOutSteps step1 step2 />
         <Avatar className={classes.avatar}>
           <LocalShippingIcon />
         </Avatar>

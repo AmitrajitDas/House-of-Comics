@@ -80,7 +80,7 @@ const SignupScreen = ({ location, history }) => {
             required
             fullWidth
             id="name"
-            label="Name"
+            placeholder="Name"
             name="name"
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -93,7 +93,7 @@ const SignupScreen = ({ location, history }) => {
             required
             fullWidth
             id="email"
-            label="Email Address"
+            placeholder="Email Address"
             name="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -105,7 +105,7 @@ const SignupScreen = ({ location, history }) => {
             required
             fullWidth
             name="password"
-            label="Password"
+            placeholder="Password"
             type={showPassword ? "text" : "password"}
             id="password"
             value={password}
@@ -128,7 +128,7 @@ const SignupScreen = ({ location, history }) => {
             required
             fullWidth
             name="confirm password"
-            label="Confirm Password"
+            placeholder="Confirm Password"
             type={showPassword ? "text" : "password"}
             id="confirm password"
             value={confirmPassword}

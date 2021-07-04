@@ -22,7 +22,10 @@ export const useStyles = makeStyles((theme) => ({
         marginTop: theme.spacing(1),
     },
     submit: {
-        margin: theme.spacing(3, 0, 2),
+        padding: '0.6rem 2rem 0.6rem 2rem',
+        margin: '0.5rem 0 1rem 0',
+        borderRadius: '20px',
+        fontSize: '1rem',
     },
 
 }));

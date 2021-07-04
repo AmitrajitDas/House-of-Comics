@@ -69,7 +69,7 @@ const LoginScreen = ({ location, history }) => {
             required
             fullWidth
             id="email"
-            label="Email Address"
+            placeholder="Email Address"
             name="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -82,7 +82,7 @@ const LoginScreen = ({ location, history }) => {
             required
             fullWidth
             name="password"
-            label="Password"
+            placeholder="Password"
             type={showPassword ? "text" : "password"}
             id="password"
             value={password}

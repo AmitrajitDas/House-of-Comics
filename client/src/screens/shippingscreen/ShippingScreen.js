@@ -32,13 +32,13 @@ const ShippingScreen = ({ location, history }) => {
 
     const [address, setAddress] = useState(shippingAddress.address)
     const [city, setCity] = useState(shippingAddress.city)
-    const [postal, setPostal] = useState(shippingAddress.postal)
+    const [postalCode, setPostalCode] = useState(shippingAddress.postalCode)
     const [country, setCountry] = useState(shippingAddress.country)
 
 
     const submitHandler = (e) => {
         e.preventDefault()
-        dispatch(saveShippingAddressAction({ address, city, postal, country }))
+        dispatch(saveShippingAddressAction({ address, city, postalCode, country }))
         history.push('/payment')
     }
 
@@ -89,8 +89,8 @@ const ShippingScreen = ({ location, history }) => {
             placeholder="Postal"
             type="text"
             id="postal"
-            value={postal}
-            onChange={(e) => setPostal(e.target.value)}
+            value={postalCode}
+            onChange={(e) => setPostalCode(e.target.value)}
           />
           <TextField
             variant="outlined"

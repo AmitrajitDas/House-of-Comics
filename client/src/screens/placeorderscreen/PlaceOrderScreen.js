@@ -44,7 +44,7 @@ const PlaceOrderScreen = () => {
                     </Typography>
                     <Typography variant='h6' component='p' className={classes.paragraph}>
                         Address : {cart.shippingAddress.address},{' '}{cart.shippingAddress.city},
-                        {' '}{cart.shippingAddress.postal},{' '}{cart.shippingAddress.country} 
+                        {' '}{cart.shippingAddress.postalCode},{' '}{cart.shippingAddress.country} 
                     </Typography>
                     <Divider />
                     <Typography variant='h4' component='h1' className={classes.header}>

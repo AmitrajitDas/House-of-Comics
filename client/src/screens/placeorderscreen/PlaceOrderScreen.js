@@ -7,6 +7,7 @@ import {Button,
         Divider,
         Card 
         } from '@material-ui/core'
+import Alert from '@material-ui/lab/Alert';
 
 import CheckOutSteps from '../../components/checkout/CheckOutSteps'
 import { useStyles } from './styles';
@@ -16,6 +17,20 @@ const PlaceOrderScreen = () => {
     const classes = useStyles()
 
     const cart = useSelector(state => state.cart)
+
+    const addDecimal = (num) => {
+        return (Math.round(num * 100)/100).toFixed(2)
+    }
+
+    cart.itemsPrice = addDecimal(cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0))
+    cart.shippingPrice = addDecimal(cart.itemsPrice > 30 ? 0 : 10)
+    cart.taxPrice = addDecimal(Number((0.15 * cart.itemsPrice).toFixed(2)))
+
+    cart.totalPrice = (Number(cart.itemsPrice) + Number(cart.shippingPrice) + Number(cart.taxPrice)).toFixed(2)
+
+    const placeOrderHandler = () => {
+        console.log('Place Order')
+    }
 
     return (
         <div className={classes.wrapper}>
@@ -42,7 +57,8 @@ const PlaceOrderScreen = () => {
                     <Typography variant='h4' component='h1' className={classes.header}>
                         Placed Orders
                     </Typography>
-                    {cart.cartItems.map((item, index) => (
+                    {cart.cartItems.length === 0 ? <div className={classes.alert}><Alert severity="error">Cart is empty!</Alert></div> :
+                    cart.cartItems.map((item, index) => (
                         <Grid container key={index}>
                             <Grid item sm={4}>
                                 <img src={item.image} alt={item.name} className={classes.image} />
@@ -61,9 +77,7 @@ const PlaceOrderScreen = () => {
                             </Grid>
                         </Grid>
                     ))}
-                        <div className={classes.divider}>
-                            <Divider />
-                        </div>
+                        
                 </Grid>
                 <Grid item sm={4} className={classes.cardWrapper}>
                         <Card className={classes.card}>
@@ -78,12 +92,12 @@ const PlaceOrderScreen = () => {
                                     <Grid container>
                                         <Grid item sm={6} className={classes.cardLeft}>
                                             <Typography variant='h6' component='p' className={classes.paragraph}>
-                                                Items
+                                                {cart.cartItems.length > 0 ? "Items' Price" : "Item's Price" }:
                                             </Typography>
                                         </Grid>
                                         <Grid item sm={3}>
                                             <Typography variant='h6' component='p' className={classes.paragraph}>
-                                                $
+                                                ${cart.itemsPrice}
                                             </Typography>
                                         </Grid>
                                     </Grid>
@@ -93,12 +107,12 @@ const PlaceOrderScreen = () => {
                                     <Grid container>
                                         <Grid item sm={6} className={classes.cardLeft}>
                                             <Typography variant='h6' component='p' className={classes.paragraph}>
-                                                Shipping
+                                                Shipping Price:
                                             </Typography>
                                         </Grid>
                                         <Grid item sm={3}>
                                             <Typography variant='h6' component='p' className={classes.paragraph}>
-                                                $
+                                                ${cart.shippingPrice}
                                             </Typography>
                                         </Grid>
                                     </Grid>
@@ -108,12 +122,12 @@ const PlaceOrderScreen = () => {
                                     <Grid container>
                                         <Grid item sm={6} className={classes.cardLeft}>
                                             <Typography variant='h6' component='p' className={classes.paragraph}>
-                                                Tax
+                                                Tax:
                                             </Typography>
                                         </Grid>
                                         <Grid item sm={3}>
                                             <Typography variant='h6' component='p' className={classes.paragraph}>
-                                                $
+                                                ${cart.taxPrice}
                                             </Typography>
                                         </Grid>
                                     </Grid>
@@ -123,12 +137,12 @@ const PlaceOrderScreen = () => {
                                     <Grid container>
                                         <Grid item sm={6} className={classes.cardLeft}>
                                             <Typography variant='h6' component='p' className={classes.paragraph}>
-                                                Total
+                                                Total:
                                             </Typography>
                                         </Grid>
                                         <Grid item sm={3}>
                                             <Typography variant='h6' component='p' className={classes.paragraph}>
-                                                $
+                                                ${cart.totalPrice}
                                             </Typography>
                                         </Grid>
                                     </Grid>

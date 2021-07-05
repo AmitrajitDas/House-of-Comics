@@ -23,7 +23,7 @@ import CheckOutSteps from '../../components/checkout/CheckOutSteps'
 import { saveShippingAddressAction } from '../../redux/actions/cartAction'
 import { useStyles } from './styles';
 
-const LoginScreen = ({ location, history }) => {
+const ShippingScreen = ({ location, history }) => {
     
     const classes = useStyles()
     const dispatch = useDispatch()
@@ -119,4 +119,4 @@ const LoginScreen = ({ location, history }) => {
   );
 }
 
-export default LoginScreen
+export default ShippingScreen

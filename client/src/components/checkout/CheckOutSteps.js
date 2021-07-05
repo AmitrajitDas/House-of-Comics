@@ -27,7 +27,7 @@ const CheckOutSteps = ({ step1, step2, step3, step4 }) => {
                         Payment
                     </Link>
                 ) : (
-                    <span>Sign in</span>
+                    <span>Payment</span>
                 )}
                 {step4 ? (
                     <Link href='/placeorder'>

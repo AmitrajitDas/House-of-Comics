@@ -36,12 +36,21 @@ const Navbar = () => {
             </Typography>
           </Link>
         </Grid>
-        <Grid item sm={4} md={3} lg={1}> 
+        <Grid item sm={4} md={3} lg={1}>
+          {userData
+          ? 
           <Link to='/cart/id?' style={{ textDecoration:'none'}}>
             <IconButton style={{ color: '#161616'}}>
               <ShoppingCartIcon />
             </IconButton>
           </Link>
+          :
+          <Link to='login' style={{ textDecoration:'none'}}>
+            <IconButton style={{ color: '#161616'}}>
+              <ShoppingCartIcon />
+            </IconButton>
+          </Link>
+          } 
         </Grid>
         <Grid item sm={4} md={3} lg={1}>
           { userData 

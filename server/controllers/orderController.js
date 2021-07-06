@@ -17,15 +17,14 @@ export const addOrderItems = asyncHandler( async(req, res) => {
         totalPrice
     } = req.body
 
-    if(orderItems && orderItems.length ===0 ){
+    if(orderItems && orderItems.length === 0 ){
         res.status(400)
         throw new Error('No ordered items')
         return
-    }
-
-    const order = new Order({
+    } else {
+        const order = new Order({
+        user: req.user?._id,
         orderItems,
-        user: req.user._id,
         shippingAddress,
         paymentMethod,
         itemsPrice,
@@ -34,8 +33,9 @@ export const addOrderItems = asyncHandler( async(req, res) => {
         totalPrice
     })
 
-    const createdOrder = order.save()
+    const createdOrder = await order.save()
 
     res.status(201).json(createdOrder)
 
+    }
 })

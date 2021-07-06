@@ -18,12 +18,12 @@ const productSchema = mongoose.Schema({
 
     name: {
         type: String,
-        required: true
+        required: true,
     },
 
     image: {
         type: String,
-        required: true
+        required: true,
     },
 
     description: {
@@ -34,12 +34,12 @@ const productSchema = mongoose.Schema({
 
     publisher: {
         type: String,
-        required: true
+        required: true,
     },
 
     category: {
         type: String,
-        required: true
+        required: true,
     },
 
     price: {

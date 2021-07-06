@@ -8,7 +8,7 @@ const Footer = () => {
     
     const classes = useStyles()
     return (
-        <div classname={classes.footerWrapper}>
+        <div className={classes.footerWrapper}>
         <AppBar position='static' className={classes.footer}>
             <Typography variant='h6' align='center' className={classes.text}>
                 Copyright &copy; Amitrajit Das, 2021 

@@ -10,13 +10,28 @@ import {Button,
 import Alert from '@material-ui/lab/Alert';
 
 import CheckOutSteps from '../../components/checkout/CheckOutSteps'
+import { orderCreateAction } from '../../redux/actions/orderActions'
 import { useStyles } from './styles';
 
-const PlaceOrderScreen = () => {
+const PlaceOrderScreen = ({ history }) => {
         
     const classes = useStyles()
+    const dispatch = useDispatch()
 
     const cart = useSelector(state => state.cart)
+    const { loading, success, order, error } = useSelector(state => state.orderCreate)
+    const { userData } = useSelector((state) => state.userLogin);
+
+    useEffect(() => {
+        if(!userData){
+            history.push('/login')
+        }
+
+        if(success){
+            history.push(`/order/${order._id}`)
+        }
+        // eslint-disable-next-line
+    }, [success, history])
 
     const addDecimal = (num) => {
         return (Math.round(num * 100)/100).toFixed(2)
@@ -29,7 +44,15 @@ const PlaceOrderScreen = () => {
     cart.totalPrice = (Number(cart.itemsPrice) + Number(cart.shippingPrice) + Number(cart.taxPrice)).toFixed(2)
 
     const placeOrderHandler = () => {
-        console.log('Place Order')
+        dispatch(orderCreateAction({
+            orderItems: cart.cartItems,
+            shippingAddress: cart.shippingAddress,
+            paymentMethod: cart.paymentMethod,
+            itemsPrice: cart.itemsPrice,
+            taxPrice: cart.taxPrice,
+            shippingPrice: cart.shippingPrice,
+            totalPrice: cart.totalPrice,
+        }))
     }
 
     return (
@@ -148,10 +171,14 @@ const PlaceOrderScreen = () => {
                                     </Grid>
                                     <Divider />
                                 </Grid>
+                                <Grid item sm={12}>
+                                    {error && <Alert severity="error">{error}</Alert>}
+                                </Grid>
                                 <Grid item sm={12} className={classes.orderButtonWrapper}>
                                     <Button
                                         className={classes.orderButton}
                                         disabled={cart.cartItems.length === 0}
+                                        onClick={placeOrderHandler}
                                     >
                                         Place Order
                                     </Button>

@@ -31,6 +31,7 @@ const ProductScreen = ({ match, history }) => {
     const [qty, setQty] = useState(1);
 
     const productDetails = useSelector(state => state.productDetails)
+    const { userData } = useSelector(state => state.userLogin)
 
     const { loading, product, error } = productDetails
 
@@ -40,8 +41,13 @@ const ProductScreen = ({ match, history }) => {
 
     }, [match, dispatch])
 
-    const addToCartHandler = () => {
-        history.push(`/cart/${match.params.id}?qty=${qty}`)
+    const addToCartHandler = (e) => {
+        if(userData){
+            history.push(`/cart/${match.params.id}?qty=${qty}`)
+        } else{
+            e.preventDefault()
+        }
+        
     }
 
     return (

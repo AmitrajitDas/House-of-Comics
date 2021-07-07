@@ -21,7 +21,6 @@ export const userDetailsAction = (id) => async(dispatch, getState) => {
         }
 
         const { data } = await axios.get(`http://localhost:5000/api/auth/${id}`, config)
-        console.log(data)
 
         dispatch({
             type: USER_DETAILS_SUCCESS,

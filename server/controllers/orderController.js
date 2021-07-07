@@ -5,7 +5,7 @@ import Order from '../models/OrderModel.js'
 // @route POST /api/orders
 // @access Private
 
-export const addOrderItems = asyncHandler( async(req, res) => {
+export const addOrderItems = asyncHandler( async(req, res, next) => {
 
     const { 
         orderItems,
@@ -19,8 +19,8 @@ export const addOrderItems = asyncHandler( async(req, res) => {
 
     if(orderItems && orderItems.length === 0 ){
         res.status(400)
-        throw new Error('No ordered items')
-        return
+        const error = new Error('No ordered items')
+        next(error)
     } else {
         const order = new Order({
         user: req.user?._id,

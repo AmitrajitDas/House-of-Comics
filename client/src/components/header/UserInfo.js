@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { 
     ClickAwayListener, 
@@ -21,6 +21,7 @@ const UserInfo = ({ userData }) => {
 
     const classes = useStyles()
     const dispatch = useDispatch()
+    const history = useHistory()
 
     const [open, setOpen] = useState(false)
     const anchorRef = useRef(null)
@@ -59,6 +60,7 @@ const UserInfo = ({ userData }) => {
     const logoutHandler = () => {
 
         dispatch(userLogoutAction())
+        history.push('/')
 
     }
 

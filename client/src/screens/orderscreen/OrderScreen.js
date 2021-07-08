@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -23,6 +23,8 @@ const OrderScreen = ({ match }) => {
     const cart = useSelector(state => state.cart)
     const { loading, order, error } = useSelector(state => state.orderDetails)
 
+    const [sdkReady, setSdkReady ] = useState(false)
+
     useEffect(() => {
 
         const paypalScript = async () => {
@@ -31,6 +33,11 @@ const OrderScreen = ({ match }) => {
             script.type = 'text/javascript'
             script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`
             script.async = true
+            script.onload = () => {
+                setSdkReady(true)
+            }
+
+            document.body.appendChild(script)
         }
 
         paypalScript()

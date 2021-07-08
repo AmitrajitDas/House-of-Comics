@@ -19,11 +19,13 @@ const OrderScreen = ({ match }) => {
     const classes = useStyles()
     const dispatch = useDispatch()
 
+    const [sdkReady, setSdkReady ] = useState(false)
+
     const orderId = match.params.id
+
     const cart = useSelector(state => state.cart)
     const { loading, order, error } = useSelector(state => state.orderDetails)
-
-    const [sdkReady, setSdkReady ] = useState(false)
+    const { loading: paymentLoading, success: paymentSuccess } = useSelector(state => state.orderPayment)
 
     useEffect(() => {
 
@@ -42,8 +44,16 @@ const OrderScreen = ({ match }) => {
 
         paypalScript()
         
-        dispatch(orderDetailsAction(orderId))
-    }, [dispatch, orderId])
+        if(!order || paymentSuccess){
+            dispatch(orderDetailsAction(orderId))
+        } else if (!order.isPaid){
+            if(!window.paypal){
+                paypalScript()
+            } else {
+                setSdkReady(true)
+            }
+        }
+    }, [dispatch, orderId, order, paymentSuccess])
 
 
     return loading ? <Loader /> : error ? <Alert severity='error'>{error}</Alert> : 
@@ -95,11 +105,9 @@ const OrderScreen = ({ match }) => {
                                 <img src={item.image} alt={item.name} className={classes.image} />
                             </Grid>
                             <Grid item sm={4} className={classes.productNameWrapper}>
-                                <Link to={`/product/${item._id}`} style={{ textDecoration:'none', color:'#161616' }}>
-                                    <Typography variant='h6' component='p' className={classes.productName}>
-                                        {item.name}
-                                    </Typography>
-                                </Link>
+                                <Typography variant='h6' component='p' className={classes.productName}>
+                                    {item.name}
+                                </Typography>
                             </Grid>
                             <Grid item sm={4} className={classes.productNameWrapper}>
                                 <Typography variant='h6' component='p' className={classes.productName}>

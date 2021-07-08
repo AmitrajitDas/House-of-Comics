@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import {Button,  
@@ -23,6 +24,17 @@ const OrderScreen = ({ match }) => {
     const { loading, order, error } = useSelector(state => state.orderDetails)
 
     useEffect(() => {
+
+        const paypalScript = async () => {
+            const { data: clientId } = await axios.get('http://localhost:5000/api/config/paypal')
+            const script = document.createElement('script')
+            script.type = 'text/javascript'
+            script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`
+            script.async = true
+        }
+
+        paypalScript()
+        
         dispatch(orderDetailsAction(orderId))
     }, [dispatch, orderId])
 
@@ -30,6 +42,9 @@ const OrderScreen = ({ match }) => {
     return loading ? <Loader /> : error ? <Alert severity='error'>{error}</Alert> : 
     <>
     <div className={classes.wrapper}>
+            <Typography variant='h4' component='h1' style={{ fontWeight: '500' }}>
+                ORDER : {orderId}
+            </Typography>
             <Grid container spacing={3}>
                 <Grid item sm={8} className={classes.leftContainer}>
                     <Typography variant='h4' component='h1' className={classes.header}>

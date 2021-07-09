@@ -9,10 +9,13 @@ import {Button,
         Card 
         } from '@material-ui/core'
 import Alert from '@material-ui/lab/Alert';
+import { PayPalButton } from 'react-paypal-button-v2'
 
 import Loader from '../../components/loader/Loader'
 import { orderDetailsAction } from '../../redux/actions/orderDetailsAction'
-import { useStyles } from './styles';
+import { orderPaymentAction } from '../../redux/actions/orderPaymentAction'
+import { ORDER_PAYMENT_RESET } from '../../redux/constants/orderConstants'
+import { useStyles } from './styles'
 
 const OrderScreen = ({ match }) => {
         
@@ -43,8 +46,16 @@ const OrderScreen = ({ match }) => {
         }
 
         paypalScript()
+
+        Object.keys(window).forEach((key) => {
+            if (/paypal|zoid|post_robot/.test(key)) {
+            delete window[key];
+            }
+        });
+
         
         if(!order || paymentSuccess){
+            dispatch({ type: ORDER_PAYMENT_RESET })
             dispatch(orderDetailsAction(orderId))
         } else if (!order.isPaid){
             if(!window.paypal){
@@ -53,7 +64,15 @@ const OrderScreen = ({ match }) => {
                 setSdkReady(true)
             }
         }
-    }, [dispatch, orderId, order, paymentSuccess])
+
+
+        // eslint-disable-next-line
+    }, [dispatch, orderId, order, paymentSuccess, Object, window])
+
+    const paymentSuccessHandler = (paymentResult) => {
+        console.log(paymentResult)
+        dispatch(orderPaymentAction(orderId, paymentResult))
+    }
 
 
     return loading ? <Loader /> : error ? <Alert severity='error'>{error}</Alert> : 
@@ -187,9 +206,19 @@ const OrderScreen = ({ match }) => {
                                     </Grid>
                                     <Divider />
                                 </Grid>
-                                <Grid item sm={12}>
-                                    {error && <Alert severity="error">{error}</Alert>}
+                                {!order.isPaid && (
+                                <Grid item sm={12} className={classes.orderButtonWrapper}>
+                                    {paymentLoading && <Loader />}
+                                    {!sdkReady 
+                                    ? <Loader />
+                                    :
+                                    (<PayPalButton 
+                                    amount={order.totalPrice} 
+                                    onSuccess={paymentSuccessHandler}
+                                    />
+                                    )}
                                 </Grid>
+                                )}
                             </Grid>    
                         </Card>
                 </Grid>

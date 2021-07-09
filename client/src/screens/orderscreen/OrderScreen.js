@@ -40,6 +40,11 @@ const OrderScreen = ({ match }) => {
             script.async = true
             script.onload = () => {
                 setSdkReady(true)
+                 Object.keys(window).forEach((key) => {
+                if (/paypal|zoid|post_robot/.test(key)) {
+                delete window[key];
+                }
+        })
             }
 
             document.body.appendChild(script)
@@ -47,11 +52,7 @@ const OrderScreen = ({ match }) => {
 
         paypalScript()
 
-        Object.keys(window).forEach((key) => {
-            if (/paypal|zoid|post_robot/.test(key)) {
-            delete window[key];
-            }
-        });
+       
 
         
         if(!order || paymentSuccess){

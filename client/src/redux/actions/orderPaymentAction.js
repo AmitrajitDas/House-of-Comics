@@ -18,7 +18,7 @@ export const orderPaymentAction = (orderId, paymentResult) => async(dispatch, ge
                 },
         }
 
-        const { data } = await axios.get(`http://localhost:5000/api/orders/${orderId}/payment`, paymentResult, config)
+        const { data } = await axios.put(`http://localhost:5000/api/orders/${orderId}/payment`, paymentResult, config)
 
         dispatch({
             type: ORDER_PAYMENT_SUCCESS,

@@ -52,8 +52,6 @@ const OrderScreen = ({ match }) => {
 
         paypalScript()
 
-       
-
         
         if(!order || paymentSuccess){
             dispatch({ type: ORDER_PAYMENT_RESET })

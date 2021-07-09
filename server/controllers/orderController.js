@@ -61,7 +61,7 @@ export const getOrderDetails = asyncHandler( async(req, res) => {
 
 
 // @desc Update order to paid
-// @route GET /api/orders/:id/payment
+// @route PUT /api/orders/:id/payment
 // @access Private
 
 export const updateOrderToPaid = asyncHandler( async(req, res) => {

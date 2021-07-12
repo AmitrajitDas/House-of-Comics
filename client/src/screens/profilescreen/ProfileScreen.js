@@ -20,6 +20,7 @@ import RedAlertBox from '../../components/alert/RedAlert'
 import GreenAlertBox from '../../components/alert/GreenAlert'
 import { userDetailsAction } from '../../redux/actions/userDetailsAction'
 import { updateProfileAction } from '../../redux/actions/updateProfileAction'
+import { orderListAction  } from '../../redux/actions/orderListAction'
 import { useStyles } from './styles';
 
 const ProfileScreen = ({ location, history }) => {
@@ -44,16 +45,19 @@ const ProfileScreen = ({ location, history }) => {
     const updateProfile = useSelector(state => state.updateProfile)
     const { success } = updateProfile
 
+    const { loading: loadingOrders, orders, error: errorOrders } = useSelector(state => state.orderList)
+
      useEffect(() => {
         
          if(!userData) {
              history.push('/login')
          } else {
              if(!profileData.name){
-                 dispatch(userDetailsAction('profile'))
+                 dispatch(userDetailsAction('profile'));
+                 dispatch(orderListAction());
              } else {
-                 setName(profileData.name)
-                 setEmail(profileData.email)
+                 setName(profileData.name);
+                 setEmail(profileData.email);
              }
          }
 
@@ -147,6 +151,13 @@ const ProfileScreen = ({ location, history }) => {
         <Typography variant='h4' className={classes.orderHeader}>
           Placed Orders
         </Typography>
+        {loadingOrders 
+        ? <Loader /> 
+        : errorOrders 
+        ? <RedAlertBox alert="There's some problems while fetching orders" />
+        :
+        <div>Table</div>
+        }
       </Grid>
     </Grid>
 

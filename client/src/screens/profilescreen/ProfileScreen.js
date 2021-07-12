@@ -1,20 +1,21 @@
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
-  Avatar,
   Button,
-  CssBaseline,
   TextField,
-  FormControlLabel,
-  Link,
-  Checkbox,
   Grid,
   Typography,
-  Container,
   Divider,
-  Alert,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
 } from '@material-ui/core'
-import PersonAddRoundedIcon from '@material-ui/icons/PersonAddRounded'
+
+import CancelIcon from '@material-ui/icons/Cancel'
 
 import Loader from '../../components/loader/Loader'
 import RedAlertBox from '../../components/alert/RedAlert'
@@ -162,7 +163,57 @@ const ProfileScreen = ({ location, history }) => {
         ) : errorOrders ? (
           <RedAlertBox alert="There's some problems while fetching orders" />
         ) : (
-          <div>Table</div>
+          <TableContainer component={Paper}>
+            <Table className={classes.table} aria-label='simple table'>
+              <TableHead>
+                <TableRow>
+                  <TableCell>ID</TableCell>
+                  <TableCell align='right'>DATE</TableCell>
+                  <TableCell align='right'>TOTAL(g)</TableCell>
+                  <TableCell align='right'>PAID</TableCell>
+                  <TableCell align='right'>DELIVERED</TableCell>
+                  <TableCell align='right'></TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {orders.map((order) => (
+                  <TableRow key={order._id}>
+                    <TableCell component='th' scope='row'>
+                      {order._id}
+                    </TableCell>
+                    <TableCell align='right'>
+                      {order.createdAt.substring(0, 10)}
+                    </TableCell>
+                    <TableCell align='right'>{order.totalPrice}</TableCell>
+                    <TableCell align='right'>
+                      {order.isPaid ? (
+                        order.paidAt.substring(0, 10)
+                      ) : (
+                        <CancelIcon style={{ color: 'red' }} />
+                      )}
+                    </TableCell>
+                    <TableCell align='right'>
+                      {order.isDelivered ? (
+                        order.DeliveredAt.substring(0, 10)
+                      ) : (
+                        <CancelIcon style={{ color: 'red' }} />
+                      )}
+                    </TableCell>
+                    <TableCell align='right'>
+                      <a
+                        href={`/order/${order._id}`}
+                        style={{ textDecoration: 'none', color: '#161616' }}
+                      >
+                        <Button color='primary' variant='contained'>
+                          Details
+                        </Button>
+                      </a>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
         )}
       </Grid>
     </Grid>

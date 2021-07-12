@@ -4,7 +4,7 @@ import {
   ORDER_LIST_FAILURE,
 } from '../constants/orderConstants'
 
-export const orderListReducer = (state = { orders: {} }, action) => {
+export const orderListReducer = (state = { orders: [] }, action) => {
   switch (action.type) {
     case ORDER_LIST_REQUEST:
       return { ...state, loading: true }

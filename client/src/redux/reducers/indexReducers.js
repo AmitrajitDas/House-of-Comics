@@ -13,20 +13,17 @@ import { orderPaymentReducer } from './orderPaymentReducer'
 import { orderListReducer } from './orderListReducer'
 
 const rootReducers = combineReducers({
-    productList: productListReducer,
-    productDetails: productDetailsReducer,
-    cart: cartReducer,
-    userLogin: userLoginReducer,
-    userRegister: userRegisterReducer,
-    userDetails: userDetailsReducer,
-    updateProfile: updateProfileReducer,
-    orderCreate: orderCreateReducer,
-    orderDetails: orderDetailsReducer,
-    orderPayment: orderPaymentReducer,
-    orderList: orderListReducer
+  productList: productListReducer,
+  productDetails: productDetailsReducer,
+  cart: cartReducer,
+  userLogin: userLoginReducer,
+  userRegister: userRegisterReducer,
+  userDetails: userDetailsReducer,
+  updateProfile: updateProfileReducer,
+  orderCreate: orderCreateReducer,
+  orderDetails: orderDetailsReducer,
+  orderPayment: orderPaymentReducer,
+  orderList: orderListReducer,
 })
 
 export default rootReducers
-
-
-

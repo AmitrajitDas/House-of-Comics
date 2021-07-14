@@ -1,4 +1,4 @@
-## V1 completed
+## V1 Completed
 
 ### Features in V1: 
 - Curated cart system
@@ -6,7 +6,7 @@
 - Paypal checkout
 - Independent profiling
 - Order records
-- 
+- Profile updates
 
 ## V2 in Development
 

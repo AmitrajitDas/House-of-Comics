@@ -14,6 +14,7 @@
 
 - Google and Facebook auth
 - PWA functionality
+- UI updation
 - Admin dashboard
 - User and Admin chat helpline
 - Stripe checkout

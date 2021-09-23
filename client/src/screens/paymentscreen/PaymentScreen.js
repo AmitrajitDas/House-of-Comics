@@ -49,7 +49,7 @@ const PaymentScreen = ({ location, history }) => {
   return (
     <Container component='main' maxWidth='xs'>
       <CssBaseline />
-      <div Paper className={classes.wrapper}>
+      <div className={classes.wrapper}>
         <CheckOutSteps step1 step2 step3 />
         <Avatar className={classes.avatar}>
           <PaymentIcon />

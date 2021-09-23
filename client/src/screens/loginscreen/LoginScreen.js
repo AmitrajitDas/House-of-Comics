@@ -51,7 +51,7 @@ const LoginScreen = ({ location, history }) => {
   return (
     <Container component='main' maxWidth='xs'>
       <CssBaseline />
-      <div Paper className={classes.paper}>
+      <div className={classes.wrapper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>

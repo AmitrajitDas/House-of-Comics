@@ -2,7 +2,9 @@ import { makeStyles } from '@material-ui/core/styles'
 
 export const useStyles = makeStyles((theme) => ({
   wrapper: {
+    marginTop: '4rem',
     padding: '3rem',
+    marginBottom: '5rem',
   },
 
   avatar: {

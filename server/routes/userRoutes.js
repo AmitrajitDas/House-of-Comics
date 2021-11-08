@@ -4,8 +4,10 @@ import {
   userRegister,
   getUserProfile,
   updateUserProfile,
+  getAllUsers,
 } from '../controllers/userController.js'
 import { routeProtection } from '../middleware/authMiddleware.js'
+import { adminOnly } from '../middleware/adminMiddleware.js'
 
 const router = express.Router()
 
@@ -15,5 +17,6 @@ router
   .route('/profile')
   .get(routeProtection, getUserProfile)
   .put(routeProtection, updateUserProfile)
+router.route('/users').get(routeProtection, adminOnly, getAllUsers)
 
 export default router

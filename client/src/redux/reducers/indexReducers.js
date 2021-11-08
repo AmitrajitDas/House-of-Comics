@@ -11,6 +11,7 @@ import { orderCreateReducer } from './orderCreateReducer'
 import { orderDetailsReducer } from './orderDetailsReducer'
 import { orderPaymentReducer } from './orderPaymentReducer'
 import { orderListReducer } from './orderListReducer'
+import { userListReducer } from './userListReducer'
 
 const rootReducers = combineReducers({
   productList: productListReducer,
@@ -24,6 +25,7 @@ const rootReducers = combineReducers({
   orderDetails: orderDetailsReducer,
   orderPayment: orderPaymentReducer,
   orderList: orderListReducer,
+  userList: userListReducer,
 })
 
 export default rootReducers

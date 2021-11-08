@@ -23,6 +23,7 @@ import ShippingScreen from './screens/shippingscreen/ShippingScreen'
 import PaymentScreen from './screens/paymentscreen/PaymentScreen'
 import PlaceOrderScreen from './screens/placeorderscreen/PlaceOrderScreen'
 import OrderScreen from './screens/orderscreen/OrderScreen'
+import UserlistScreen from './screens/userlistscreen/UserlistScreen'
 
 const App = () => {
   const theme = responsiveFontSizes(
@@ -58,6 +59,7 @@ const App = () => {
                 <Route path='/payment' component={PaymentScreen} />
                 <Route path='/placeorder' component={PlaceOrderScreen} />
                 <Route path='/order/:id' component={OrderScreen} />
+                <Route path='/admin/userlist' component={UserlistScreen} />
               </Switch>
             </Container>
             <Footer />

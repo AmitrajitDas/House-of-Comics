@@ -93,13 +93,29 @@ const UserInfo = ({ userData }) => {
                   id='menu-list-grow'
                   onKeyDown={handleListKeyDown}
                 >
-                  <a
-                    href='/profile'
-                    style={{ textDecoration: 'none', color: '#161616' }}
-                  >
-                    <MenuItem onClick={handleClose}>Profile</MenuItem>
-                  </a>
-                  <MenuItem onClick={logoutHandler}>Logout</MenuItem>
+                  {userData.isAdmin ? (
+                    <>
+                      <a
+                        href='/admin/userlist'
+                        style={{ textDecoration: 'none', color: '#161616' }}
+                      >
+                        <MenuItem onClick={handleClose}>Users</MenuItem>
+                      </a>
+                      <MenuItem onClick={handleClose}>Orders</MenuItem>
+                      <MenuItem onClick={handleClose}>Products</MenuItem>
+                    </>
+                  ) : (
+                    <>
+                      <a
+                        href='/profile'
+                        style={{ textDecoration: 'none', color: '#161616' }}
+                      >
+                        <MenuItem onClick={handleClose}>Profile</MenuItem>
+                      </a>
+
+                      <MenuItem onClick={logoutHandler}>Logout</MenuItem>
+                    </>
+                  )}
                 </MenuList>
               </ClickAwayListener>
             </Paper>

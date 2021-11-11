@@ -4,6 +4,7 @@ import {
   USER_LOGIN_FAILURE,
   USER_LOGOUT,
   USER_DETAILS_RESET,
+  USER_LIST_RESET,
 } from '../constants/authConstants'
 import { ORDER_LIST_RESET } from '../constants/orderConstants'
 import { userLogin } from '../../api/users'
@@ -38,4 +39,5 @@ export const userLogoutAction = () => async (dispatch) => {
   dispatch({ type: USER_LOGOUT })
   dispatch({ type: USER_DETAILS_RESET })
   dispatch({ type: ORDER_LIST_RESET })
+  dispatch({ type: USER_LIST_RESET })
 }

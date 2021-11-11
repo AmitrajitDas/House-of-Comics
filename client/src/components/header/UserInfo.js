@@ -103,6 +103,7 @@ const UserInfo = ({ userData }) => {
                       </a>
                       <MenuItem onClick={handleClose}>Orders</MenuItem>
                       <MenuItem onClick={handleClose}>Products</MenuItem>
+                      <MenuItem onClick={logoutHandler}>Logout</MenuItem>
                     </>
                   ) : (
                     <>

@@ -24,15 +24,21 @@ import RedAlertBox from '../../components/alert/RedAlert'
 import { userListAction } from '../../redux/actions/userListAction'
 import { useStyles } from './styles'
 
-const UserlistScreen = () => {
+const UserlistScreen = ({ history }) => {
   const classes = useStyles()
   const dispatch = useDispatch()
 
   const { loading, users, error } = useSelector((state) => state.userList)
+  const { userData } = useSelector((state) => state.userLogin)
 
   useEffect(() => {
-    dispatch(userListAction())
-  }, [dispatch])
+    if (userData && userData.isAdmin) {
+      dispatch(userListAction())
+    } else {
+      alert('Please login as an Admin to access this route')
+      history.push('/')
+    }
+  }, [dispatch, history])
 
   return (
     <div className={classes.wrapper}>

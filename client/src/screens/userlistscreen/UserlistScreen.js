@@ -22,6 +22,7 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import Loader from '../../components/loader/Loader'
 import RedAlertBox from '../../components/alert/RedAlert'
 import { userListAction } from '../../redux/actions/userListAction'
+import { userDeleteAction } from '../../redux/actions/userDeleteAction'
 import { useStyles } from './styles'
 
 const UserlistScreen = ({ history }) => {
@@ -30,6 +31,7 @@ const UserlistScreen = ({ history }) => {
 
   const { loading, users, error } = useSelector((state) => state.userList)
   const { userData } = useSelector((state) => state.userLogin)
+  const { success: successDelete } = useSelector((state) => state.userDelete)
 
   useEffect(() => {
     if (userData && userData.isAdmin) {
@@ -38,7 +40,13 @@ const UserlistScreen = ({ history }) => {
       alert('Please login as an Admin to access this route')
       history.push('/')
     }
-  }, [dispatch, history])
+  }, [dispatch, history, successDelete])
+
+  const deleteUserHandler = (id) => {
+    if (window.confirm('Are you sure ?')) {
+      dispatch(userDeleteAction(id))
+    }
+  }
 
   return (
     <div className={classes.wrapper}>
@@ -89,7 +97,11 @@ const UserlistScreen = ({ history }) => {
                           <IconButton color='primary' variant='contained'>
                             <CreateIcon style={{ color: '#161616' }} />
                           </IconButton>
-                          <IconButton color='primary' variant='contained'>
+                          <IconButton
+                            color='primary'
+                            variant='contained'
+                            onClick={() => deleteUserHandler(user._id)}
+                          >
                             <DeleteIcon style={{ color: 'red' }} />
                           </IconButton>
                         </TableCell>

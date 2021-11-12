@@ -136,6 +136,32 @@ export const getUsersById = asyncHandler(async (req, res) => {
   }
 })
 
+// @desc Update user by id
+// @route PUT /api/auth/user/:id
+// @access Private/Admin
+
+export const updateUserById = asyncHandler(async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id)
+
+    user.name = req.body.name || user.name
+    user.email = req.body.email || user.email
+    user.isAdmin = req.body.isAdmin
+
+    const updatedUser = await user.save()
+
+    res.status(200).json({
+      id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      isAdmin: updatedUser.isAdmin,
+    })
+  } catch (error) {
+    res.status(404)
+    throw new Error('User not found')
+  }
+})
+
 // @desc Delete an user
 // @route DELETE /api/auth/deleteuser/:id
 // @access Private/Admin

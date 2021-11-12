@@ -23,7 +23,7 @@ export const userDeleteAction = (id) => async (dispatch, getState) => {
       },
     }
 
-    const { data } = await axios.delete(
+    await axios.delete(
       `http://localhost:5000/api/auth/deleteuser/${id}`,
       config
     )

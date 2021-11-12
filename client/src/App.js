@@ -24,6 +24,7 @@ import PaymentScreen from './screens/paymentscreen/PaymentScreen'
 import PlaceOrderScreen from './screens/placeorderscreen/PlaceOrderScreen'
 import OrderScreen from './screens/orderscreen/OrderScreen'
 import UserlistScreen from './screens/userlistscreen/UserlistScreen'
+import UserEditScreen from './screens/usereditscreen/UserEditScreen'
 
 const App = () => {
   const theme = responsiveFontSizes(
@@ -60,6 +61,7 @@ const App = () => {
                 <Route path='/placeorder' component={PlaceOrderScreen} />
                 <Route path='/order/:id' component={OrderScreen} />
                 <Route path='/admin/userlist' component={UserlistScreen} />
+                <Route path='/admin/user/:id/edit' component={UserEditScreen} />
               </Switch>
             </Container>
             <Footer />

@@ -23,6 +23,7 @@ import Loader from '../../components/loader/Loader'
 import RedAlertBox from '../../components/alert/RedAlert'
 import { userListAction } from '../../redux/actions/userListAction'
 import { userDeleteAction } from '../../redux/actions/userDeleteAction'
+import { userDetailsAction } from '../../redux/actions/userDetailsAction'
 import { useStyles } from './styles'
 
 const UserlistScreen = ({ history }) => {
@@ -40,7 +41,11 @@ const UserlistScreen = ({ history }) => {
       alert('Please login as an Admin to access this route')
       history.push('/')
     }
-  }, [dispatch, history, successDelete])
+  }, [dispatch, history, successDelete, userData])
+
+  const editUserHandler = (id) => {
+    history.push(`/admin/user/${id}/edit`)
+  }
 
   const deleteUserHandler = (id) => {
     if (window.confirm('Are you sure ?')) {
@@ -95,7 +100,10 @@ const UserlistScreen = ({ history }) => {
                         </TableCell>
                         <TableCell align='right'>
                           <IconButton color='primary' variant='contained'>
-                            <CreateIcon style={{ color: '#161616' }} />
+                            <CreateIcon
+                              style={{ color: '#161616' }}
+                              onClick={() => editUserHandler(user._id)}
+                            />
                           </IconButton>
                           <IconButton
                             color='primary'

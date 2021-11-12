@@ -122,6 +122,20 @@ export const getAllUsers = asyncHandler(async (req, res) => {
   }
 })
 
+// @desc Get users by id
+// @route GET /api/auth/users/:id
+// @access Private/Admin
+
+export const getUsersById = asyncHandler(async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id).select('-password')
+    res.status(200).json(user)
+  } catch (error) {
+    res.status(404)
+    throw new Error('Could not find users')
+  }
+})
+
 // @desc Delete an user
 // @route DELETE /api/auth/deleteuser/:id
 // @access Private/Admin

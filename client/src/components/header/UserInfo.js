@@ -101,8 +101,19 @@ const UserInfo = ({ userData }) => {
                       >
                         <MenuItem onClick={handleClose}>Users</MenuItem>
                       </a>
-                      <MenuItem onClick={handleClose}>Orders</MenuItem>
-                      <MenuItem onClick={handleClose}>Products</MenuItem>
+                      <a
+                        href='/admin/orderlist'
+                        style={{ textDecoration: 'none', color: '#161616' }}
+                      >
+                        <MenuItem onClick={handleClose}>Orders</MenuItem>
+                      </a>
+                      <a
+                        href='/admin/productlist'
+                        style={{ textDecoration: 'none', color: '#161616' }}
+                      >
+                        <MenuItem onClick={handleClose}>Products</MenuItem>
+                      </a>
+
                       <MenuItem onClick={logoutHandler}>Logout</MenuItem>
                     </>
                   ) : (

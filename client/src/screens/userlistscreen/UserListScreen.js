@@ -26,7 +26,7 @@ import { userDeleteAction } from '../../redux/actions/userDeleteAction'
 import { userDetailsAction } from '../../redux/actions/userDetailsAction'
 import { useStyles } from './styles'
 
-const UserlistScreen = ({ history }) => {
+const UserListScreen = ({ history }) => {
   const classes = useStyles()
   const dispatch = useDispatch()
 
@@ -68,7 +68,6 @@ const UserlistScreen = ({ history }) => {
                 <TableHead>
                   <TableRow>
                     <TableCell>ID</TableCell>
-                    <TableCell align='right'>ID</TableCell>
                     <TableCell align='right'>NAME</TableCell>
                     <TableCell align='right'>EMAIL</TableCell>
                     <TableCell align='right'>ADMIN</TableCell>
@@ -125,4 +124,4 @@ const UserlistScreen = ({ history }) => {
   )
 }
 
-export default UserlistScreen
+export default UserListScreen

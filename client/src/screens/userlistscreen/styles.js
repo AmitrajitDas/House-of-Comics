@@ -4,7 +4,6 @@ export const useStyles = makeStyles((theme) => ({
   wrapper: {
     marginTop: '2rem',
     padding: '2rem',
-    marginBottom: '19.5rem',
   },
   paper: {
     marginTop: theme.spacing(8),

@@ -24,6 +24,7 @@ import RedAlertBox from '../../components/alert/RedAlert'
 import {
   productListAction,
   productDetailsAction,
+  productDeleteAction,
 } from '../../redux/actions/productActions'
 import { useStyles } from './styles'
 
@@ -33,6 +34,11 @@ const ProductListScreen = ({ history }) => {
 
   const { loading, products, error } = useSelector((state) => state.productList)
   const { userData } = useSelector((state) => state.userLogin)
+  const {
+    loading: loadingDelete,
+    success: successDelete,
+    error: errorDelete,
+  } = useSelector((state) => state.productDelete)
 
   useEffect(() => {
     if (userData && userData.isAdmin) {
@@ -41,7 +47,7 @@ const ProductListScreen = ({ history }) => {
       alert('Please login as an Admin to access this route')
       history.push('/')
     }
-  }, [dispatch, history, userData])
+  }, [dispatch, history, userData, successDelete])
 
   const editProductHandler = (id) => {
     history.push(`/admin/product/${id}/edit`)
@@ -49,7 +55,7 @@ const ProductListScreen = ({ history }) => {
 
   const deleteProductHandler = (id) => {
     if (window.confirm('Are you sure ?')) {
-      // PRODUCT DELETE
+      dispatch(productDeleteAction(id))
     }
   }
 
@@ -66,6 +72,8 @@ const ProductListScreen = ({ history }) => {
         </Button>
       </div>
       <div style={{ marginTop: '1rem' }}>
+        {loadingDelete && <Loader />}
+        {errorDelete && <RedAlertBox alert={error} />}
         {loading ? (
           <Loader />
         ) : error ? (

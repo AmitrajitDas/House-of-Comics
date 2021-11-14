@@ -41,14 +41,18 @@ const ProductListScreen = ({ history }) => {
     }
   }, [dispatch, history, userData])
 
-  const editUserHandler = (id) => {
+  const editProductHandler = (id) => {
     history.push(`/admin/product/${id}/edit`)
   }
 
-  const deleteUserHandler = (id) => {
+  const deleteProductHandler = (id) => {
     if (window.confirm('Are you sure ?')) {
-      // USER DELETE
+      // PRODUCT DELETE
     }
+  }
+
+  const createProductHandler = (id) => {
+    // PRODUCT CREATE
   }
 
   return (
@@ -93,13 +97,13 @@ const ProductListScreen = ({ history }) => {
                           <IconButton color='primary' variant='contained'>
                             <CreateIcon
                               style={{ color: '#161616' }}
-                              onClick={() => editUserHandler(product._id)}
+                              onClick={() => editProductHandler(product._id)}
                             />
                           </IconButton>
                           <IconButton
                             color='primary'
                             variant='contained'
-                            onClick={() => deleteUserHandler(product._id)}
+                            onClick={() => deleteProductHandler(product._id)}
                           >
                             <DeleteIcon style={{ color: 'red' }} />
                           </IconButton>

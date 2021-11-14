@@ -20,7 +20,7 @@ import VisibilityOffIcon from '@material-ui/icons/VisibilityOff'
 
 import Loader from '../../components/loader/Loader'
 import RedAlertBox from '../../components/alert/RedAlert'
-import { userLoginAction } from '../../redux/actions/userLoginAction'
+import { userLoginAction } from '../../redux/actions/userActions'
 import { useStyles } from './styles'
 
 const LoginScreen = ({ location, history }) => {

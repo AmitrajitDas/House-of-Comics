@@ -21,8 +21,10 @@ import CancelIcon from '@mui/icons-material/Cancel'
 import DeleteIcon from '@mui/icons-material/Delete'
 import Loader from '../../components/loader/Loader'
 import RedAlertBox from '../../components/alert/RedAlert'
-import { productListAction } from '../../redux/actions/productListAction'
-import { productDetailsAction } from '../../redux/actions/productDetailsAction'
+import {
+  productListAction,
+  productDetailsAction,
+} from '../../redux/actions/productActions'
 import { useStyles } from './styles'
 
 const ProductListScreen = ({ history }) => {

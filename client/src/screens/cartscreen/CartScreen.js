@@ -21,7 +21,7 @@ import { Link } from 'react-router-dom'
 import {
   addToCartAction,
   removeFromCartAction,
-} from '../../redux/actions/cartAction'
+} from '../../redux/actions/cartActions'
 import { useStyles } from './styles'
 import RedAlertBox from '../../components/alert/RedAlert'
 

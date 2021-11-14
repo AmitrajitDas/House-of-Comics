@@ -14,7 +14,7 @@ import {
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 
-import { userLogoutAction } from '../../redux/actions/userLoginAction'
+import { userLogoutAction } from '../../redux/actions/userActions'
 
 const UserInfo = ({ userData }) => {
   const dispatch = useDispatch()

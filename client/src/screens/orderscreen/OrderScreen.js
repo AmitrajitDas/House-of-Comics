@@ -7,8 +7,10 @@ import Alert from '@material-ui/lab/Alert'
 import { PayPalButton } from 'react-paypal-button-v2'
 
 import Loader from '../../components/loader/Loader'
-import { orderDetailsAction } from '../../redux/actions/orderDetailsAction'
-import { orderPaymentAction } from '../../redux/actions/orderPaymentAction'
+import {
+  orderDetailsAction,
+  orderPaymentAction,
+} from '../../redux/actions/orderActions'
 import { ORDER_PAYMENT_RESET } from '../../redux/constants/orderConstants'
 import { useStyles } from './styles'
 

@@ -25,8 +25,10 @@ import VisibilityIcon from '@material-ui/icons/Visibility'
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff'
 import Loader from '../../components/loader/Loader'
 import RedAlertBox from '../../components/alert/RedAlert'
-import { userDetailsAction } from '../../redux/actions/userDetailsAction'
-import { userUpdateAction } from '../../redux/actions/userUpdateAction'
+import {
+  userDetailsAction,
+  userUpdateAction,
+} from '../../redux/actions/userActions'
 import { useStyles } from './styles'
 
 import { USER_UPDATE_RESET } from '../../redux/constants/authConstants'

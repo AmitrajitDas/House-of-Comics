@@ -1,19 +1,24 @@
 import { combineReducers } from 'redux'
 
-import { productListReducer } from './productListReducer'
-import { productDetailsReducer } from './productDetailsReducer'
+import {
+  userLoginReducer,
+  userRegisterReducer,
+  userDetailsReducer,
+  updateProfileReducer,
+  userListReducer,
+  userDeleteReducer,
+  userUpdateReducer,
+} from './userReducers'
+
+import { productListReducer, productDetailsReducer } from './productReducers'
+
+import {
+  orderCreateReducer,
+  orderDetailsReducer,
+  orderPaymentReducer,
+  orderListReducer,
+} from './orderReducers'
 import { cartReducer } from './cartReducers'
-import { userLoginReducer } from './userLoginReducer'
-import { userRegisterReducer } from './userRegisterReducer'
-import { userDetailsReducer } from './userDetailsReducer'
-import { updateProfileReducer } from './updateProfileReducer'
-import { orderCreateReducer } from './orderCreateReducer'
-import { orderDetailsReducer } from './orderDetailsReducer'
-import { orderPaymentReducer } from './orderPaymentReducer'
-import { orderListReducer } from './orderListReducer'
-import { userListReducer } from './userListReducer'
-import { userDeleteReducer } from './userDeleteReducer'
-import { userUpdateReducer } from './userUpdateReducer'
 
 const rootReducers = combineReducers({
   productList: productListReducer,

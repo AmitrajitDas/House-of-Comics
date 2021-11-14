@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Typography, Grid } from '@material-ui/core'
 
 import Product from '../../components/product/Product'
-import { productListAction } from '../../redux/actions/productListAction'
+import { productListAction } from '../../redux/actions/productActions'
 import Loader from '../../components/loader/Loader'
 import RedAlertBox from '../../components/alert/RedAlert'
 

@@ -20,9 +20,11 @@ import CancelIcon from '@material-ui/icons/Cancel'
 import Loader from '../../components/loader/Loader'
 import RedAlertBox from '../../components/alert/RedAlert'
 import GreenAlertBox from '../../components/alert/GreenAlert'
-import { userDetailsAction } from '../../redux/actions/userDetailsAction'
-import { updateProfileAction } from '../../redux/actions/updateProfileAction'
-import { orderListAction } from '../../redux/actions/orderListAction'
+import {
+  userDetailsAction,
+  updateProfileAction,
+} from '../../redux/actions/userActions'
+import { orderListAction } from '../../redux/actions/orderActions'
 import { useStyles } from './styles'
 
 const ProfileScreen = ({ location, history }) => {

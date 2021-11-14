@@ -21,7 +21,7 @@ import Loader from '../../components/loader/Loader'
 import RedAlertBox from '../../components/alert/RedAlert'
 
 import CheckOutSteps from '../../components/checkout/CheckOutSteps'
-import { saveShippingAddressAction } from '../../redux/actions/cartAction'
+import { saveShippingAddressAction } from '../../redux/actions/cartActions'
 import { useStyles } from './styles'
 
 const ShippingScreen = ({ location, history }) => {

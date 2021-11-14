@@ -21,7 +21,7 @@ import VisibilityOffIcon from '@material-ui/icons/VisibilityOff'
 import Loader from '../../components/loader/Loader'
 import RedAlertBox from '../../components/alert/RedAlert'
 import GreenAlertBox from '../../components/alert/GreenAlert'
-import { userRegisterAction } from '../../redux/actions/userRegisterAction'
+import { userRegisterAction } from '../../redux/actions/userActions'
 import { useStyles } from './styles'
 
 const SignupScreen = ({ location, history }) => {

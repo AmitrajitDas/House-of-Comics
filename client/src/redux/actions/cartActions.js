@@ -4,10 +4,12 @@ import {
   CART_SAVE_SHIPPING_ADDRESS,
   CART_SAVE_PAYMENT_METHOD,
 } from '../constants/cartConstants'
-import { getProductDetails } from '../../api/products'
+import axios from 'axios'
 
 export const addToCartAction = (id, qty) => async (dispatch, getState) => {
-  const { data } = await getProductDetails(id)
+  const { data } = await axios.get(
+    `${process.env.REACT_APP_DEV_API}/products/${id}`
+  )
 
   dispatch({
     type: CART_ADD_ITEM,

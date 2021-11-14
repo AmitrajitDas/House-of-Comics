@@ -25,7 +25,7 @@ import Loader from '../../components/loader/Loader'
 import RedAlertBox from '../../components/alert/RedAlert'
 
 import CheckOutSteps from '../../components/checkout/CheckOutSteps'
-import { savePaymentMethodAction } from '../../redux/actions/cartAction'
+import { savePaymentMethodAction } from '../../redux/actions/cartActions'
 import { useStyles } from './styles'
 
 const PaymentScreen = ({ location, history }) => {

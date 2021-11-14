@@ -21,7 +21,7 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 import Rating from '../../components/rating/Rating'
 import Loader from '../../components/loader/Loader'
 import RedAlertBox from '../../components/alert/RedAlert'
-import { productDetailsAction } from '../../redux/actions/productDetailsAction'
+import { productDetailsAction } from '../../redux/actions/productActions'
 
 import { useStyles } from './styles'
 

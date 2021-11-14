@@ -5,7 +5,7 @@ import { Button, Grid, Typography, Divider, Card } from '@material-ui/core'
 import Alert from '@material-ui/lab/Alert'
 
 import CheckOutSteps from '../../components/checkout/CheckOutSteps'
-import { orderCreateAction } from '../../redux/actions/orderCreateAction'
+import { orderCreateAction } from '../../redux/actions/orderActions'
 import { useStyles } from './styles'
 
 const PlaceOrderScreen = ({ history }) => {

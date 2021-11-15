@@ -25,7 +25,9 @@ import {
   productListAction,
   productDetailsAction,
   productDeleteAction,
+  productCreateAction,
 } from '../../redux/actions/productActions'
+import { PRODUCT_CREATE_RESET } from '../../redux/constants/productConstants'
 import { useStyles } from './styles'
 
 const ProductListScreen = ({ history }) => {
@@ -40,14 +42,32 @@ const ProductListScreen = ({ history }) => {
     error: errorDelete,
   } = useSelector((state) => state.productDelete)
 
+  const {
+    loading: loadingCreate,
+    success: successCreate,
+    error: errorCreate,
+    product: createdProduct,
+  } = useSelector((state) => state.productCreate)
+
   useEffect(() => {
-    if (userData && userData.isAdmin) {
-      dispatch(productListAction())
-    } else {
+    if (!userData.isAdmin) {
       alert('Please login as an Admin to access this route')
       history.push('/')
     }
-  }, [dispatch, history, userData, successDelete])
+
+    if (successCreate) {
+      history.push(`/admin/product/${createdProduct._id}/edit`)
+    } else {
+      dispatch(productListAction())
+    }
+  }, [
+    dispatch,
+    history,
+    userData,
+    successDelete,
+    successCreate,
+    createdProduct,
+  ])
 
   const editProductHandler = (id) => {
     history.push(`/admin/product/${id}/edit`)
@@ -59,15 +79,19 @@ const ProductListScreen = ({ history }) => {
     }
   }
 
-  const createProductHandler = (id) => {
-    // PRODUCT CREATE
+  const createProductHandler = () => {
+    dispatch(productCreateAction())
   }
 
   return (
     <div className={classes.wrapper}>
       <div className={classes.header}>
         <Typography variant='h4'>List of Products</Typography>
-        <Button variant='contained' className={classes.btn}>
+        <Button
+          variant='contained'
+          className={classes.btn}
+          onClick={createProductHandler}
+        >
           + &nbsp; Create Product
         </Button>
       </div>

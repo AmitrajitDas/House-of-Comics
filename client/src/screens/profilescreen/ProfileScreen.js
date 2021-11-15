@@ -58,12 +58,12 @@ const ProfileScreen = ({ location, history }) => {
     if (!userData) {
       history.push('/login')
     } else {
-      if (!profileData.name) {
+      if (profileData && !profileData.name) {
         dispatch(userDetailsAction('profile'))
         dispatch(orderListAction())
       } else {
-        setName(profileData.name)
-        setEmail(profileData.email)
+        setName(profileData && profileData.name)
+        setEmail(profileData && profileData.email)
       }
     }
   }, [profileData, history, userData, dispatch])

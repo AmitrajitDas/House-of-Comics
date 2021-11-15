@@ -165,7 +165,7 @@ export const userDetailsAction = (id) => async (dispatch, getState) => {
     }
 
     const { data } = await axios.get(
-      `${process.env.REACT_APP_DEV_API}/auth/users/${id}`,
+      `${process.env.REACT_APP_DEV_API}/auth/profile`,
       config
     )
 

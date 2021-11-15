@@ -2,7 +2,6 @@ import { makeStyles } from '@material-ui/core/styles'
 
 export const useStyles = makeStyles((theme) => ({
   wrapper: {
-    marginTop: '2rem',
     padding: '2rem',
   },
 
@@ -25,5 +24,17 @@ export const useStyles = makeStyles((theme) => ({
     margin: '0.5rem 0 1rem 0',
     borderRadius: '20px',
     fontSize: '1rem',
+  },
+  button: {
+    padding: '1vh 5vh',
+    borderRadius: '2rem',
+    color: theme.palette.primary.main,
+    backgroundColor: theme.palette.alternate.main,
+    textTransform: 'none',
+    fontSize: '15px',
+    marginTop: '2rem',
+    '&:hover': {
+      backgroundColor: theme.palette.alternate.secondary,
+    },
   },
 }))

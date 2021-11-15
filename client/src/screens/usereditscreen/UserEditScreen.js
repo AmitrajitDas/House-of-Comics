@@ -17,7 +17,7 @@ import {
 import FormGroup from '@mui/material/FormGroup'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Checkbox from '@mui/material/Checkbox'
-
+import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 import UpdateIcon from '@mui/icons-material/Update'
 
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
@@ -74,8 +74,15 @@ const UserEditScreen = ({ location, history }) => {
     dispatch(userUpdateAction({ _id: userId, name, email, isAdmin }))
   }
 
+  const backButtonHandler = () => {
+    history.push('/admin/usertlist')
+  }
+
   return (
     <>
+      <Button className={classes.button} onClick={backButtonHandler}>
+        <ArrowBackIcon />
+      </Button>
       {loading ? (
         <Loader />
       ) : error ? (
@@ -88,7 +95,7 @@ const UserEditScreen = ({ location, history }) => {
               <UpdateIcon />
             </Avatar>
             <Typography component='h1' variant='h5'>
-              Update User
+              Edit User
             </Typography>
             {errorUpdate && <RedAlertBox alert={errorUpdate} />}
             {loadingUpdate && <Loader />}

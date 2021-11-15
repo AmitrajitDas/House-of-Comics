@@ -26,6 +26,7 @@ import OrderScreen from './screens/orderscreen/OrderScreen'
 import UserListScreen from './screens/userlistscreen/UserListScreen'
 import UserEditScreen from './screens/usereditscreen/UserEditScreen'
 import ProductListScreen from './screens/productlistcreen/ProductListScreen'
+import ProductEditScreen from './screens/producteditscreen/ProductEditScreen'
 
 const App = () => {
   const theme = responsiveFontSizes(
@@ -66,6 +67,10 @@ const App = () => {
                 <Route
                   path='/admin/productlist'
                   component={ProductListScreen}
+                />
+                <Route
+                  path='/admin/product/:id/edit'
+                  component={ProductEditScreen}
                 />
               </Switch>
             </Container>

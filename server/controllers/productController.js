@@ -73,8 +73,15 @@ export const createProduct = asyncHandler(async (req, res) => {
 // @access  Private/Admin
 export const updateProduct = asyncHandler(async (req, res) => {
   try {
-    const { name, price, description, image, brand, category, countInStock } =
-      req.body
+    const {
+      name,
+      price,
+      description,
+      image,
+      publisher,
+      category,
+      countInStock,
+    } = req.body
 
     const product = await Product.findById(req.params.id)
 
@@ -83,7 +90,7 @@ export const updateProduct = asyncHandler(async (req, res) => {
       product.price = price
       product.description = description
       product.image = image
-      product.brand = brand
+      product.publisher = publisher
       product.category = category
       product.countInStock = countInStock
 

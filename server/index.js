@@ -3,6 +3,7 @@ import mongoose from 'mongoose'
 import cors from 'cors'
 import dotenv from 'dotenv'
 import colors from 'colors'
+import { fileURLToPath } from 'url'
 import path from 'path'
 import connectDB from './config/db.js'
 import productRoutes from './routes/productRoutes.js'
@@ -20,9 +21,6 @@ app.use(cors())
 
 app.use(express.json())
 
-const __dirname = path.resolve()
-app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
-
 app.get('/', (req, res) => {
   res.send('API is running....')
 })
@@ -35,6 +33,10 @@ app.use('/api/upload', uploadRoutes)
 app.get('/api/config/paypal', (req, res) =>
   res.send(process.env.PAYPAL_CLIENT_ID)
 )
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
 
 app.use(notFound)
 app.use(errorHandler)

@@ -13,19 +13,17 @@ import {
   IconButton,
   InputAdornment,
 } from '@material-ui/core'
-
 import FormGroup from '@mui/material/FormGroup'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Checkbox from '@mui/material/Checkbox'
-
 import UpdateIcon from '@mui/icons-material/Update'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack'
-
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import VisibilityIcon from '@material-ui/icons/Visibility'
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff'
 import Loader from '../../components/loader/Loader'
 import RedAlertBox from '../../components/alert/RedAlert'
+import axios from 'axios'
 import {
   productDetailsAction,
   productUpdateAction,
@@ -47,6 +45,7 @@ const ProductEditScreen = ({ location, history }) => {
   const [category, setCategory] = useState('')
   const [countInStock, setCountInStock] = useState(0)
   const [description, setDescription] = useState('')
+  const [upload, setUpload] = useState(false)
 
   const { loading, product, error } = useSelector(
     (state) => state.productDetails
@@ -76,6 +75,33 @@ const ProductEditScreen = ({ location, history }) => {
       }
     }
   }, [product, dispatch, productId, history, successUpdate])
+
+  const uploadFileHandler = async (e) => {
+    const file = e.target.files[0]
+    const formData = new FormData()
+    formData.append('image', file)
+    setUpload(true)
+
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }
+
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_DEV_API}/upload`,
+        formData,
+        config
+      )
+
+      setImage(data)
+      setUpload(false)
+    } catch (error) {
+      console.error(error)
+      setUpload(false)
+    }
+  }
 
   const submitHandler = (e) => {
     e.preventDefault()
@@ -147,18 +173,39 @@ const ProductEditScreen = ({ location, history }) => {
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
               />
-              <TextField
-                variant='outlined'
-                margin='normal'
-                required
-                fullWidth
-                id='image'
-                placeholder='Image'
-                type='text'
-                name='image'
-                value={image}
-                onChange={(e) => setImage(e.target.value)}
-              />
+              <div style={{ display: 'flex', flexDirection: 'row' }}>
+                <TextField
+                  variant='outlined'
+                  margin='normal'
+                  required
+                  fullWidth
+                  id='image'
+                  placeholder='Image'
+                  type='text'
+                  name='image'
+                  value={image}
+                  onChange={(e) => setImage(e.target.value)}
+                />
+                <input
+                  type='file'
+                  accept='image/*'
+                  style={{ display: 'none' }}
+                  id='contained-button-file'
+                  onChange={uploadFileHandler}
+                />
+                <label htmlFor='contained-button-file'>
+                  <Button
+                    variant='contained'
+                    color='primary'
+                    component='span'
+                    style={{ marginTop: '1.5rem', marginLeft: '1rem' }}
+                  >
+                    Upload
+                  </Button>
+                </label>
+                {upload && <Loader />}
+              </div>
+
               <TextField
                 variant='outlined'
                 margin='normal'

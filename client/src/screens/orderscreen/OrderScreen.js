@@ -10,8 +10,12 @@ import Loader from '../../components/loader/Loader'
 import {
   orderDetailsAction,
   orderPaymentAction,
+  orderDeliverAction,
 } from '../../redux/actions/orderActions'
-import { ORDER_PAYMENT_RESET } from '../../redux/constants/orderConstants'
+import {
+  ORDER_PAYMENT_RESET,
+  ORDER_DELIVER_RESET,
+} from '../../redux/constants/orderConstants'
 import { useStyles } from './styles'
 
 const OrderScreen = ({ match }) => {
@@ -27,11 +31,20 @@ const OrderScreen = ({ match }) => {
   const { loading: paymentLoading, success: paymentSuccess } = useSelector(
     (state) => state.orderPayment
   )
+  const { loading: deliverLoading, success: deliverSuccess } = useSelector(
+    (state) => state.orderDeliver
+  )
+
+  const { userData } = useSelector((state) => state.userLogin)
+
+  const deliverHandler = () => {
+    dispatch(orderDeliverAction(orderId))
+  }
 
   useEffect(() => {
     const paypalScript = async () => {
       const { data: clientId } = await axios.get(
-        'http://localhost:5000/api/config/paypal'
+        `${process.env.REACT_APP_DEV_API}/config/paypal`
       )
       const script = document.createElement('script')
       script.type = 'text/javascript'
@@ -53,6 +66,7 @@ const OrderScreen = ({ match }) => {
 
     if (!order || paymentSuccess) {
       dispatch({ type: ORDER_PAYMENT_RESET })
+      dispatch({ type: ORDER_DELIVER_RESET })
       dispatch(orderDetailsAction(orderId))
     } else if (!order.isPaid) {
       if (!window.paypal) {
@@ -296,6 +310,19 @@ const OrderScreen = ({ match }) => {
                     )}
                   </Grid>
                 )}
+                {deliverLoading && <Loader />}
+                <Grid item sm={12} className={classes.deliverButtonWrapper}>
+                  {userData.isAdmin && order.isPaid && !order.isDelivered && (
+                    <Button
+                      variant='contained'
+                      color='primary'
+                      className={classes.deliverButton}
+                      onClick={deliverHandler}
+                    >
+                      Mark as Delivered
+                    </Button>
+                  )}
+                </Grid>
               </Grid>
             </Card>
           </Grid>

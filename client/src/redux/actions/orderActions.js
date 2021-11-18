@@ -14,6 +14,9 @@ import {
   ORDER_PAYMENT_REQUEST,
   ORDER_PAYMENT_SUCCESS,
   ORDER_PAYMENT_FAILURE,
+  ORDER_DELIVER_REQUEST,
+  ORDER_DELIVER_SUCCESS,
+  ORDER_DELIVER_FAILURE,
 } from '../constants/orderConstants'
 import axios from 'axios'
 
@@ -201,3 +204,40 @@ export const orderPaymentAction =
       })
     }
   }
+
+export const orderDeliverAction = (orderId) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: ORDER_DELIVER_REQUEST,
+    })
+
+    const {
+      userLogin: { userData },
+    } = getState()
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userData.token} `,
+      },
+    }
+
+    const { data } = await axios.put(
+      `${process.env.REACT_APP_DEV_API}/orders/${orderId}/delivery`,
+      {},
+      config
+    )
+
+    dispatch({
+      type: ORDER_DELIVER_SUCCESS,
+      payload: data,
+    })
+  } catch (error) {
+    dispatch({
+      type: ORDER_DELIVER_FAILURE,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    })
+  }
+}

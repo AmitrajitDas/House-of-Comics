@@ -196,7 +196,7 @@ const ProfileScreen = ({ location, history }) => {
                     </TableCell>
                     <TableCell align='right'>
                       {order.isDelivered ? (
-                        order.DeliveredAt.substring(0, 10)
+                        order.deliveredAt.substring(0, 10)
                       ) : (
                         <CancelIcon style={{ color: 'red' }} />
                       )}

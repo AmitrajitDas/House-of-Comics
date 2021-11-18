@@ -79,6 +79,22 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
 
+  deliverButtonWrapper: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: '2vh',
+  },
+
+  deliverButton: {
+    padding: '1vh 8vh',
+    color: theme.palette.alternate.main,
+    backgroundColor: theme.palette.primary.main,
+    '&:hover': {
+      backgroundColor: theme.palette.primary.secondary,
+    },
+  },
+
   alert: {
     width: '100%',
     '& > * + *': {

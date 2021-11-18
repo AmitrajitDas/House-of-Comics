@@ -52,7 +52,7 @@ const ProfileScreen = ({ location, history }) => {
     loading: loadingOrders,
     orders,
     error: errorOrders,
-  } = useSelector((state) => state.orderList)
+  } = useSelector((state) => state.orderUserList)
 
   useEffect(() => {
     if (!userData) {

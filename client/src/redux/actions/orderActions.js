@@ -5,6 +5,9 @@ import {
   ORDER_DETAILS_REQUEST,
   ORDER_DETAILS_SUCCESS,
   ORDER_DETAILS_FAILURE,
+  ORDER_USERLIST_REQUEST,
+  ORDER_USERLIST_SUCCESS,
+  ORDER_USERLIST_FAILURE,
   ORDER_LIST_REQUEST,
   ORDER_LIST_SUCCESS,
   ORDER_LIST_FAILURE,
@@ -88,6 +91,42 @@ export const orderDetailsAction = (id) => async (dispatch, getState) => {
   }
 }
 
+export const orderUserListAction = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: ORDER_USERLIST_REQUEST,
+    })
+
+    const {
+      userLogin: { userData },
+    } = getState()
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userData.token} `,
+      },
+    }
+
+    const { data } = await axios.get(
+      `${process.env.REACT_APP_DEV_API}/orders/myorders`,
+      config
+    )
+
+    dispatch({
+      type: ORDER_USERLIST_SUCCESS,
+      payload: data,
+    })
+  } catch (error) {
+    dispatch({
+      type: ORDER_USERLIST_FAILURE,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    })
+  }
+}
+
 export const orderListAction = () => async (dispatch, getState) => {
   try {
     dispatch({
@@ -105,7 +144,7 @@ export const orderListAction = () => async (dispatch, getState) => {
     }
 
     const { data } = await axios.get(
-      `${process.env.REACT_APP_DEV_API}/orders/myorders`,
+      `${process.env.REACT_APP_DEV_API}/orders`,
       config
     )
 

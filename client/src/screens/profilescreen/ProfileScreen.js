@@ -24,7 +24,7 @@ import {
   userDetailsAction,
   updateProfileAction,
 } from '../../redux/actions/userActions'
-import { orderListAction } from '../../redux/actions/orderActions'
+import { orderUserListAction } from '../../redux/actions/orderActions'
 import { useStyles } from './styles'
 
 const ProfileScreen = ({ location, history }) => {
@@ -60,7 +60,7 @@ const ProfileScreen = ({ location, history }) => {
     } else {
       if (profileData && !profileData.name) {
         dispatch(userDetailsAction('profile'))
-        dispatch(orderListAction())
+        dispatch(orderUserListAction())
       } else {
         setName(profileData && profileData.name)
         setEmail(profileData && profileData.email)

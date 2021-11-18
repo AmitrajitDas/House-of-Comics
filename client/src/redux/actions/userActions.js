@@ -24,7 +24,7 @@ import {
   USER_PROFILE_SUCCESS,
   USER_PROFILE_FAILURE,
 } from '../constants/authConstants'
-import { ORDER_LIST_RESET } from '../constants/orderConstants'
+import { ORDER_USERLIST_RESET } from '../constants/orderConstants'
 import axios from 'axios'
 
 export const userRegisterAction =
@@ -102,7 +102,7 @@ export const userLogoutAction = () => async (dispatch) => {
   localStorage.removeItem('userData')
   dispatch({ type: USER_LOGOUT })
   dispatch({ type: USER_DETAILS_RESET })
-  dispatch({ type: ORDER_LIST_RESET })
+  dispatch({ type: ORDER_USERLIST_RESET })
   dispatch({ type: USER_LIST_RESET })
 }
 

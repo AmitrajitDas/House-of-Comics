@@ -14,14 +14,13 @@ export const getProducts = asyncHandler(async (req, res) => {
 // @route GET /api/products/:id
 // @access Public
 
-export const getProductDetails = asyncHandler(async (req, res) => {
+export const getProductDetails = asyncHandler(async (req, res, next) => {
   const product = await Product.findById(req.params.id)
 
   if (product) {
     res.json(product)
   } else {
     res.status(404)
-    throw new Error('Product not found')
   }
 })
 
@@ -29,7 +28,7 @@ export const getProductDetails = asyncHandler(async (req, res) => {
 // @route DELETE /api/products/:id
 // @access Private/Admin
 
-export const deleteProductById = asyncHandler(async (req, res) => {
+export const deleteProductById = asyncHandler(async (req, res, next) => {
   try {
     const product = await Product.findById(req.params.id)
 
@@ -39,14 +38,15 @@ export const deleteProductById = asyncHandler(async (req, res) => {
     }
   } catch (error) {
     res.status(404)
-    throw new Error('Product not found')
+    const err = new Error('Product not found')
+    next(err)
   }
 })
 
 // @desc    Create a product
 // @route   POST /api/products
 // @access  Private/Admin
-export const createProduct = asyncHandler(async (req, res) => {
+export const createProduct = asyncHandler(async (req, res, next) => {
   try {
     const product = new Product({
       user: req.user._id,
@@ -64,14 +64,15 @@ export const createProduct = asyncHandler(async (req, res) => {
     res.status(201).json(createdProduct)
   } catch (error) {
     res.status(404)
-    throw new Error('Error creating product')
+    const err = new Error('Error creating product')
+    next(err)
   }
 })
 
 // @desc    Update a product
 // @route   PUT /api/products/:id
 // @access  Private/Admin
-export const updateProduct = asyncHandler(async (req, res) => {
+export const updateProduct = asyncHandler(async (req, res, next) => {
   try {
     const {
       name,
@@ -99,6 +100,52 @@ export const updateProduct = asyncHandler(async (req, res) => {
     }
   } catch (error) {
     res.status(404)
-    throw new Error('Product not found')
+    const err = new Error('Product not found')
+    next(err)
+  }
+})
+
+// @desc    Create new review
+// @route   POST /api/products/:id/reviews
+// @access  Private
+export const createProductReview = asyncHandler(async (req, res, next) => {
+  const { rating, comment } = req.body
+
+  try {
+    const product = await Product.findById(req.params.id)
+
+    if (product) {
+      const reviewExists = product.reviews.find(
+        (r) => r.user.toString() === req.user._id.toString()
+      )
+
+      if (reviewExists) {
+        res.status(400)
+        const err = new Error('Product already reviewed')
+        next(err)
+      }
+
+      const review = {
+        user: req.user._id,
+        name: req.user.name,
+        rating: Number(rating),
+        comment,
+      }
+
+      product.reviews.push(review)
+
+      product.numReviews = product.reviews.length
+
+      product.rating =
+        product.reviews.reduce((acc, item) => item.rating + acc, 0) /
+        product.reviews.length
+
+      await product.save()
+      res.status(201).json({ message: 'Review added' })
+    }
+  } catch (error) {
+    res.status(404)
+    const err = new Error('Product not found')
+    next(err)
   }
 })

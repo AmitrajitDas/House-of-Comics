@@ -64,4 +64,7 @@ export const useStyles = makeStyles((theme) => ({
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
+  reviewContainer: {
+    marginTop: '2rem',
+  },
 }))

@@ -8,21 +8,26 @@ import {
   Grid,
   Typography,
   Card,
-  Divider,
   InputLabel,
   MenuItem,
-  FormHelperText,
   FormControl,
   Select,
 } from '@material-ui/core'
+import List from '@mui/material/List'
+import ListItem from '@mui/material/ListItem'
+import ListItemText from '@mui/material/ListItemText'
+import Divider from '@mui/material/Divider'
 
 import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 
 import Rating from '../../components/rating/Rating'
 import Loader from '../../components/loader/Loader'
 import RedAlertBox from '../../components/alert/RedAlert'
-import { productDetailsAction } from '../../redux/actions/productActions'
-
+import {
+  productDetailsAction,
+  productReviewCreateAction,
+} from '../../redux/actions/productActions'
+import { PRODUCT_CREATE_REVIEW_RESET } from '../../redux/constants/productConstants'
 import { useStyles } from './styles'
 
 const ProductScreen = ({ match, history }) => {
@@ -30,11 +35,16 @@ const ProductScreen = ({ match, history }) => {
   const dispatch = useDispatch()
 
   const [qty, setQty] = useState(1)
+  const [rating, setRating] = useState(0)
+  const [comment, setComment] = useState('')
 
-  const productDetails = useSelector((state) => state.productDetails)
+  const { loading, product, error } = useSelector(
+    (state) => state.productDetails
+  )
+  const { success: successProductReview, error: errorProductReview } =
+    useSelector((state) => state.productReviewCreate)
+
   const { userData } = useSelector((state) => state.userLogin)
-
-  const { loading, product, error } = productDetails
 
   useEffect(() => {
     dispatch(productDetailsAction(match.params.id))
@@ -196,6 +206,59 @@ const ProductScreen = ({ match, history }) => {
                   </Grid>
                 </Grid>
               </Card>
+            </Grid>
+          </Grid>
+          <Grid container className={classes.reviewContainer}>
+            <Grid item xs={6}>
+              <Typography variant='h4' style={{ marginBottom: '2rem' }}>
+                REVIEWS
+              </Typography>
+              {product.reviews && product.reviews.length === 0 && (
+                <RedAlertBox alert='No reviews' />
+              )}
+
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                }}
+              >
+                {product.reviews &&
+                  product.reviews.map((review) => (
+                    <div
+                      style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        marginTop: '1rem',
+                      }}
+                    >
+                      <Typography variant='h6'>{review.name}</Typography>
+                      <Rating value={review.rating} />
+                      <Typography variant='h6' component='p'>
+                        {review.createdAt.substring(0, 10)}
+                      </Typography>
+                      <div style={{ marginTop: '1rem', marginBottom: '2rem' }}>
+                        <Typography variant='h6' component='p'>
+                          {review.comment}
+                        </Typography>
+                      </div>
+                      <Divider />
+                    </div>
+                  ))}
+              </div>
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                }}
+              >
+                <Typography
+                  variant='h4'
+                  style={{ marginTop: '1rem', marginBottom: '2rem' }}
+                >
+                  WRITE A CUSTOMER REVIEW
+                </Typography>
+              </div>
             </Grid>
           </Grid>
         </div>

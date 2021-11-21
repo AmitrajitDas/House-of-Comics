@@ -123,25 +123,25 @@ export const createProductReview = asyncHandler(async (req, res, next) => {
         res.status(400)
         const err = new Error('Product already reviewed')
         next(err)
+      } else {
+        const review = {
+          user: req.user._id,
+          name: req.user.name,
+          rating: Number(rating),
+          comment,
+        }
+
+        product.reviews.push(review)
+
+        product.numReviews = product.reviews.length
+
+        product.rating =
+          product.reviews.reduce((acc, item) => item.rating + acc, 0) /
+          product.reviews.length
+
+        await product.save()
+        res.status(201).json({ message: 'Review added' })
       }
-
-      const review = {
-        user: req.user._id,
-        name: req.user.name,
-        rating: Number(rating),
-        comment,
-      }
-
-      product.reviews.push(review)
-
-      product.numReviews = product.reviews.length
-
-      product.rating =
-        product.reviews.reduce((acc, item) => item.rating + acc, 0) /
-        product.reviews.length
-
-      await product.save()
-      res.status(201).json({ message: 'Review added' })
     }
   } catch (error) {
     res.status(404)

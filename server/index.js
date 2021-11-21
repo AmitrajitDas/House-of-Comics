@@ -3,6 +3,7 @@ import mongoose from 'mongoose'
 import cors from 'cors'
 import dotenv from 'dotenv'
 import colors from 'colors'
+import morgan from 'morgan'
 import { fileURLToPath } from 'url'
 import path from 'path'
 import connectDB from './config/db.js'
@@ -18,6 +19,10 @@ connectDB()
 
 const app = express()
 app.use(cors())
+
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'))
+}
 
 app.use(express.json())
 

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
-
+import { Link, useParams } from 'react-router-dom'
+import { useTheme } from '@mui/material/styles'
 import {
   Container,
   Button,
@@ -12,6 +12,8 @@ import {
   MenuItem,
   FormControl,
   Select,
+  TextField,
+  OutlinedInput,
 } from '@material-ui/core'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
@@ -23,6 +25,7 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 import Rating from '../../components/rating/Rating'
 import Loader from '../../components/loader/Loader'
 import RedAlertBox from '../../components/alert/RedAlert'
+import GreenAlertBox from '../../components/alert/GreenAlert'
 import {
   productDetailsAction,
   productReviewCreateAction,
@@ -33,16 +36,31 @@ import { useStyles } from './styles'
 const ProductScreen = ({ match, history }) => {
   const classes = useStyles()
   const dispatch = useDispatch()
+  const params = useParams()
+  const productId = params.id
+  console.log(productId)
+
+  const ratingNums = [
+    'Select a rating',
+    '1 - Poor',
+    '2 - Fair',
+    '3 - Good',
+    '4 - Very Good',
+    '5 - Excellent',
+  ]
 
   const [qty, setQty] = useState(1)
-  const [rating, setRating] = useState(0)
+  const [rating, setRating] = useState(ratingNums[0])
   const [comment, setComment] = useState('')
 
   const { loading, product, error } = useSelector(
     (state) => state.productDetails
   )
-  const { success: successProductReview, error: errorProductReview } =
-    useSelector((state) => state.productReviewCreate)
+  const {
+    success: successProductReview,
+    error: errorProductReview,
+    loading: loadingProductReview,
+  } = useSelector((state) => state.productReviewCreate)
 
   const { userData } = useSelector((state) => state.userLogin)
 
@@ -56,6 +74,16 @@ const ProductScreen = ({ match, history }) => {
     } else {
       e.preventDefault()
     }
+  }
+
+  const submitHandler = (e) => {
+    e.preventDefault()
+    dispatch(
+      productReviewCreateAction(productId, {
+        rating,
+        comment,
+      })
+    )
   }
 
   return (
@@ -196,8 +224,10 @@ const ProductScreen = ({ match, history }) => {
                   >
                     <Button
                       className={classes.addtocartButton}
+                      variant='contained'
                       disabled={product.countInStock === 0}
                       onClick={addToCartHandler}
+                      color='primary'
                     >
                       <Typography variant='body1' align='center'>
                         Add to Cart
@@ -258,6 +288,62 @@ const ProductScreen = ({ match, history }) => {
                 >
                   WRITE A CUSTOMER REVIEW
                 </Typography>
+                {successProductReview && (
+                  <GreenAlertBox alert='Review submitted successfully' />
+                )}
+                {loadingProductReview && <Loader />}
+                {errorProductReview && (
+                  <RedAlertBox alert={errorProductReview} />
+                )}
+                {userData ? (
+                  <form
+                    className={classes.form}
+                    noValidate
+                    onSubmit={submitHandler}
+                  >
+                    <Select
+                      labelId='demo-simple-select-outlined-label'
+                      id='demo-simple-select-outlined'
+                      value={rating}
+                      onChange={(e) => setRating(e.target.value)}
+                      label='Rating'
+                      placeholder='Please select a rating'
+                      variant='outlined'
+                      className={classes.select}
+                    >
+                      {ratingNums.map((rating) => (
+                        <MenuItem key={rating} value={rating}>
+                          {rating}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                    <TextField
+                      variant='outlined'
+                      margin='normal'
+                      required
+                      fullWidth
+                      multiline
+                      id='comment'
+                      placeholder='Leave a comment'
+                      type='text'
+                      name='comment'
+                      value={comment}
+                      onChange={(e) => setComment(e.target.value)}
+                    />
+                    <Button
+                      className={classes.reviewSubmitButton}
+                      variant='contained'
+                      color='primary'
+                      type='submit'
+                    >
+                      <Typography variant='body1' align='center' type='submit'>
+                        Submit
+                      </Typography>
+                    </Button>
+                  </form>
+                ) : (
+                  <RedAlertBox alert='Please Login to write a review' />
+                )}
               </div>
             </Grid>
           </Grid>

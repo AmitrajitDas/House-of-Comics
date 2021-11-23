@@ -154,7 +154,7 @@ const ProductEditScreen = ({ location, history }) => {
                 fullWidth
                 id='name'
                 placeholder='Name'
-                type='email'
+                type='text'
                 name='name'
                 value={name}
                 onChange={(e) => setName(e.target.value)}

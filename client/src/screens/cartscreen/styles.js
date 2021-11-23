@@ -4,6 +4,7 @@ export const useStyles = makeStyles((theme) => ({
   wrapper: {
     marginTop: '2rem',
     padding: '2rem',
+    marginBottom: '9rem',
   },
 
   button: {
@@ -41,7 +42,7 @@ export const useStyles = makeStyles((theme) => ({
   },
 
   checkoutButton: {
-    padding: '1vh 8vh',
+    padding: '1vh 5vh',
     color: theme.palette.alternate.main,
     backgroundColor: theme.palette.primary.main,
     '&:hover': {

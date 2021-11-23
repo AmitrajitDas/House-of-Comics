@@ -49,12 +49,9 @@ export const useStyles = makeStyles((theme) => ({
   },
 
   addtocartButton: {
-    padding: '1vh 10vh',
+    padding: '1vh 5vh',
     color: theme.palette.alternate.main,
     backgroundColor: theme.palette.primary.main,
-    '&:hover': {
-      backgroundColor: theme.palette.primary.secondary,
-    },
   },
 
   formControl: {
@@ -65,6 +62,20 @@ export const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
   },
   reviewContainer: {
+    marginTop: '2rem',
+  },
+  form: {
+    width: '100%',
+    marginTop: theme.spacing(1),
+  },
+  select: {
+    width: '20rem',
+    marginBottom: '2rem',
+  },
+  reviewSubmitButton: {
+    padding: '1vh 5vh',
+    color: theme.palette.alternate.main,
+    backgroundColor: theme.palette.primary.main,
     marginTop: '2rem',
   },
 }))

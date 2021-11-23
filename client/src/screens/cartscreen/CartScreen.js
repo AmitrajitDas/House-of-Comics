@@ -140,6 +140,8 @@ const CartScreen = ({ match, location, history }) => {
                   className={classes.checkoutButton}
                   disabled={cartItems.length === 0}
                   onClick={checkoutHandler}
+                  variant='contained'
+                  color='primary'
                 >
                   <Typography variant='body1' align='center'>
                     Proceed to Checkout

@@ -176,13 +176,13 @@ export const productReviewCreateAction =
       })
 
       const {
-        userLogin: { userInfo },
+        userLogin: { userData },
       } = getState()
 
       const config = {
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${userInfo.token}`,
+          Authorization: `Bearer ${userData.token}`,
         },
       }
 
@@ -197,7 +197,7 @@ export const productReviewCreateAction =
       })
     } catch (error) {
       dispatch({
-        type: PRODUCT_UPDATE_FAILURE,
+        type: PRODUCT_CREATE_REVIEW_FAILURE,
         payload:
           error.response && error.response.data.message
             ? error.response.data.message

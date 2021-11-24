@@ -40,14 +40,7 @@ const ProductScreen = ({ match, history }) => {
   const productId = params.id
   console.log(productId)
 
-  const ratingNums = [
-    'Select a rating',
-    '1 - Poor',
-    '2 - Fair',
-    '3 - Good',
-    '4 - Very Good',
-    '5 - Excellent',
-  ]
+  const ratingNums = [1, 2, 3, 4, 5]
 
   const [qty, setQty] = useState(1)
   const [rating, setRating] = useState(ratingNums[0])
@@ -66,7 +59,7 @@ const ProductScreen = ({ match, history }) => {
 
   useEffect(() => {
     dispatch(productDetailsAction(match.params.id))
-  }, [match, dispatch])
+  }, [match, dispatch, successProductReview])
 
   const addToCartHandler = (e) => {
     if (userData) {
@@ -301,22 +294,31 @@ const ProductScreen = ({ match, history }) => {
                     noValidate
                     onSubmit={submitHandler}
                   >
-                    <Select
-                      labelId='demo-simple-select-outlined-label'
-                      id='demo-simple-select-outlined'
-                      value={rating}
-                      onChange={(e) => setRating(e.target.value)}
-                      label='Rating'
-                      placeholder='Please select a rating'
+                    <FormControl
                       variant='outlined'
-                      className={classes.select}
+                      className={classes.formControl}
                     >
-                      {ratingNums.map((rating) => (
-                        <MenuItem key={rating} value={rating}>
-                          {rating}
-                        </MenuItem>
-                      ))}
-                    </Select>
+                      <InputLabel id='demo-simple-select-outlined-label'>
+                        Rating
+                      </InputLabel>
+                      <Select
+                        labelId='demo-simple-select-outlined-label'
+                        id='demo-simple-select-outlined'
+                        value={rating}
+                        onChange={(e) => setRating(e.target.value)}
+                        label='Rating'
+                        placeholder='Please select a rating'
+                        variant='outlined'
+                        className={classes.select}
+                      >
+                        {ratingNums.map((rating) => (
+                          <MenuItem key={rating} value={rating}>
+                            {rating}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </FormControl>
+
                     <TextField
                       variant='outlined'
                       margin='normal'

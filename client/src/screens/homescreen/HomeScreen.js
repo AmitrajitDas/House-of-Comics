@@ -9,15 +9,18 @@ import RedAlertBox from '../../components/alert/RedAlert'
 
 import { useStyles } from './styles'
 
-const HomeScreen = () => {
+const HomeScreen = ({ location, history }) => {
   const classes = useStyles()
   const dispatch = useDispatch()
+
+  const query = new URLSearchParams(location.search)
+  const keyword = query.get('name') || ''
 
   const { loading, products, error } = useSelector((state) => state.productList)
 
   useEffect(() => {
-    dispatch(productListAction())
-  }, [dispatch])
+    dispatch(productListAction(keyword))
+  }, [dispatch, keyword])
 
   return (
     <div className={classes.homewrapper}>

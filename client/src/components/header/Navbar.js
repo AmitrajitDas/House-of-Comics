@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import Searchbar from '../searchbar/Searchbar'
 
 //mui components
 import {
@@ -29,7 +30,7 @@ const Navbar = () => {
       <AppBar position='static' color='primary'>
         <Toolbar>
           <Grid container spacing={1}>
-            <Grid item sm={4} md={6} lg={10}>
+            <Grid item sm={7}>
               <Link to='/' style={{ textDecoration: 'none' }}>
                 <Typography
                   variant='h4'
@@ -40,7 +41,10 @@ const Navbar = () => {
                 </Typography>
               </Link>
             </Grid>
-            <Grid item sm={4} md={3} lg={1}>
+            <Grid item sm={3}>
+              <Searchbar />
+            </Grid>
+            <Grid item sm={1}>
               {userData ? (
                 <Link to='/cart/id?' style={{ textDecoration: 'none' }}>
                   <IconButton style={{ color: '#161616' }}>
@@ -55,7 +59,7 @@ const Navbar = () => {
                 </Link>
               )}
             </Grid>
-            <Grid item sm={4} md={3} lg={1}>
+            <Grid item sm={1}>
               {userData ? (
                 <UserInfo userData={userData} />
               ) : (

@@ -1,7 +1,7 @@
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Typography, Grid } from '@material-ui/core'
-
+import Paginate from '../../components/paginate/Paginate'
 import Product from '../../components/product/Product'
 import { productListAction } from '../../redux/actions/productActions'
 import Loader from '../../components/loader/Loader'
@@ -13,12 +13,15 @@ const HomeScreen = ({ location, history }) => {
   const classes = useStyles()
   const dispatch = useDispatch()
 
-  console.log(location)
   const query = new URLSearchParams(location.search)
   const keyword = query.get('name') || ''
   const pageNumber = query.get('page') || ''
 
-  const { loading, products, error } = useSelector((state) => state.productList)
+  const { loading, products, error, page, pages } = useSelector(
+    (state) => state.productList
+  )
+
+  console.log(page)
 
   useEffect(() => {
     dispatch(productListAction(keyword, pageNumber))
@@ -39,6 +42,7 @@ const HomeScreen = ({ location, history }) => {
                 <Product product={product} />
               </Grid>
             ))}
+          <Paginate pages={pages} history={history} page={page} />
         </Grid>
       )}
     </div>

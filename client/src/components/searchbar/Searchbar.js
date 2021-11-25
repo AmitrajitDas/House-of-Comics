@@ -11,7 +11,6 @@ const Searchbar = () => {
   const [keyword, setKeyword] = useState('')
 
   useEffect(() => {
-    // console.log(window.location.pathname);
     if (
       window.location.pathname === '/' ||
       window.location.pathname.includes('/search')

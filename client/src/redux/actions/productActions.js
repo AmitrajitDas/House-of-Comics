@@ -21,13 +21,13 @@ import {
 import axios from 'axios'
 
 export const productListAction =
-  (keyword = '') =>
+  (keyword = '', pageNumber = '') =>
   async (dispatch) => {
     try {
       dispatch({ type: PRODUCT_LIST_REQUEST })
 
       const { data } = await axios.get(
-        `${process.env.REACT_APP_DEV_API}/products?keyword=${keyword}`
+        `${process.env.REACT_APP_DEV_API}/products?keyword=${keyword}&pageNumber=${pageNumber}`
       )
 
       dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data })

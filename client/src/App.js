@@ -54,7 +54,9 @@ const App = () => {
             <Container>
               <Switch>
                 <Route path='/' exact component={HomeScreen} />
-                <Route path='/search' exact component={HomeScreen} />
+                <Route path='/search' component={HomeScreen} />
+                {/* <Route path='/page/:pageNumber' exact component={HomeScreen} /> */}
+                {/* <Route path='/search/page' component={HomeScreen} /> */}
                 <Route path='/product/:id' component={ProductScreen} />
                 <Route path='/cart/:id?' component={CartScreen} />
                 <Route path='/login' component={LoginScreen} />

@@ -13,14 +13,16 @@ const HomeScreen = ({ location, history }) => {
   const classes = useStyles()
   const dispatch = useDispatch()
 
+  console.log(location)
   const query = new URLSearchParams(location.search)
   const keyword = query.get('name') || ''
+  const pageNumber = query.get('page') || ''
 
   const { loading, products, error } = useSelector((state) => state.productList)
 
   useEffect(() => {
-    dispatch(productListAction(keyword))
-  }, [dispatch, keyword])
+    dispatch(productListAction(keyword, pageNumber))
+  }, [dispatch, keyword, pageNumber])
 
   return (
     <div className={classes.homewrapper}>

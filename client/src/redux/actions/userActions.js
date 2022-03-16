@@ -99,7 +99,7 @@ export const userLoginAction = (email, password) => async (dispatch) => {
 }
 
 export const userLogoutAction = () => async (dispatch) => {
-  localStorage.removeItem('userData')
+  localStorage.clear()
   dispatch({ type: USER_LOGOUT })
   dispatch({ type: USER_DETAILS_RESET })
   dispatch({ type: ORDER_USERLIST_RESET })

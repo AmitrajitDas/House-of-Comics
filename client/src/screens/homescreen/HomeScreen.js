@@ -42,7 +42,10 @@ const HomeScreen = ({ location, history }) => {
                 <Product product={product} />
               </Grid>
             ))}
-          <Paginate pages={pages} history={history} page={page} />
+
+          <Grid item xs={12} style={{ marginTop: '3rem' }}>
+            <Paginate pages={pages} history={history} page={page} />
+          </Grid>
         </Grid>
       )}
     </div>

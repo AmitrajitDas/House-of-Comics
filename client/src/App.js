@@ -40,6 +40,7 @@ const App = () => {
         primary: { main: '#8fd9a8', secondary: '#7eca9c' },
         secondary: { main: '#ffffff' },
         alternate: { main: '#161616', secondary: '#393e46' },
+        pagination: { main: '#7eca9c' },
       },
     })
   )
@@ -55,8 +56,8 @@ const App = () => {
               <Switch>
                 <Route path='/' exact component={HomeScreen} />
                 <Route path='/search' exact component={HomeScreen} />
-                {/* <Route path='/page/:pageNumber' exact component={HomeScreen} /> */}
-                {/* <Route path='/search/page' component={HomeScreen} /> */}
+                <Route path='/page/:pageNumber' exact component={HomeScreen} />
+                <Route path='/search/page' component={HomeScreen} />
                 <Route path='/product/:id' component={ProductScreen} />
                 <Route path='/cart/:id?' component={CartScreen} />
                 <Route path='/login' component={LoginScreen} />

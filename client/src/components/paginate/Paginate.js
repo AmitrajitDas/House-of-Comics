@@ -9,7 +9,7 @@ const Paginate = ({ page, pages, setPaginate, history }) => {
   return (
     <div>
       <Stack spacing={2}>
-        <Pagination count={pages} onChange={handleChange} color='primary' />
+        <Pagination count={pages} onChange={handleChange} />
       </Stack>
     </div>
   )

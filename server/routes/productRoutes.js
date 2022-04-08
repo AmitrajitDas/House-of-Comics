@@ -1,6 +1,7 @@
 import express from 'express'
 import {
   getProducts,
+  getProductsAll,
   getProductDetails,
   deleteProductById,
   createProduct,
@@ -16,6 +17,8 @@ router
   .route('/')
   .get(getProducts)
   .post(routeProtection, adminOnly, createProduct)
+
+router.route('/list').get(getProductsAll)
 
 router
   .route('/:id')

@@ -41,7 +41,7 @@ export const userRegisterAction =
       }
 
       const { data } = await axios.post(
-        `${process.env.REACT_APP_DEV_API}/auth/signup`,
+        `${process.env.REACT_APP_PROD_API}/auth/signup`,
         { name, email, password },
         config
       )
@@ -76,7 +76,7 @@ export const userLoginAction = (email, password) => async (dispatch) => {
     }
 
     const { data } = await axios.post(
-      `${process.env.REACT_APP_DEV_API}/auth/login`,
+      `${process.env.REACT_APP_PROD_API}/auth/login`,
       { email, password },
       config
     )
@@ -124,7 +124,7 @@ export const userUpdateAction = (user) => async (dispatch, getState) => {
     }
 
     const { data } = await axios.put(
-      `${process.env.REACT_APP_DEV_API}/auth/users/${user._id}`,
+      `${process.env.REACT_APP_PROD_API}/auth/users/${user._id}`,
       user,
       config
     )
@@ -165,7 +165,7 @@ export const userDetailsAction = (id) => async (dispatch, getState) => {
     }
 
     const { data } = await axios.get(
-      `${process.env.REACT_APP_DEV_API}/auth/profile`,
+      `${process.env.REACT_APP_PROD_API}/auth/profile`,
       config
     )
 
@@ -202,7 +202,7 @@ export const userDeleteAction = (id) => async (dispatch, getState) => {
     }
 
     await axios.delete(
-      `${process.env.REACT_APP_DEV_API}/auth/deleteuser/${id}`,
+      `${process.env.REACT_APP_PROD_API}/auth/deleteuser/${id}`,
       config
     )
 
@@ -238,7 +238,7 @@ export const userListAction = () => async (dispatch, getState) => {
     }
 
     const { data } = await axios.get(
-      `${process.env.REACT_APP_DEV_API}/auth/users`,
+      `${process.env.REACT_APP_PROD_API}/auth/users`,
       config
     )
 
@@ -276,7 +276,7 @@ export const updateProfileAction =
       }
 
       const { data } = await axios.put(
-        `${process.env.REACT_APP_DEV_API}/auth/profile`,
+        `${process.env.REACT_APP_PROD_API}/auth/profile`,
         profileData,
         config
       )

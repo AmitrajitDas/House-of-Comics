@@ -28,7 +28,7 @@ export const productListAction = (keyword, pageNumber) => async (dispatch) => {
     dispatch({ type: PRODUCT_LIST_REQUEST })
 
     const { data } = await axios.get(
-      `${process.env.REACT_APP_DEV_API}/products?keyword=${keyword}&pageNumber=${pageNumber}`
+      `${process.env.REACT_APP_PROD_API}/products?keyword=${keyword}&pageNumber=${pageNumber}`
     )
 
     dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data })
@@ -48,7 +48,7 @@ export const productListAllAction = () => async (dispatch) => {
     dispatch({ type: PRODUCT_LIST_ALL_REQUEST })
 
     const { data } = await axios.get(
-      `${process.env.REACT_APP_DEV_API}/products/list`
+      `${process.env.REACT_APP_PROD_API}/products/list`
     )
 
     dispatch({ type: PRODUCT_LIST_ALL_SUCCESS, payload: data })
@@ -68,7 +68,7 @@ export const productDetailsAction = (id) => async (dispatch) => {
     dispatch({ type: PRODUCT_DETAILS_REQUEST })
 
     const { data } = await axios.get(
-      `${process.env.REACT_APP_DEV_API}/products/${id}`
+      `${process.env.REACT_APP_PROD_API}/products/${id}`
     )
 
     dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data })
@@ -99,7 +99,7 @@ export const productDeleteAction = (id) => async (dispatch, getState) => {
     }
 
     const { data } = await axios.delete(
-      `${process.env.REACT_APP_DEV_API}/products/${id}`,
+      `${process.env.REACT_APP_PROD_API}/products/${id}`,
       config
     )
 
@@ -132,7 +132,7 @@ export const productCreateAction = () => async (dispatch, getState) => {
     }
 
     const { data } = await axios.post(
-      `${process.env.REACT_APP_DEV_API}/products`,
+      `${process.env.REACT_APP_PROD_API}/products`,
       {},
       config
     )
@@ -170,7 +170,7 @@ export const productUpdateAction = (product) => async (dispatch, getState) => {
     }
 
     const { data } = await axios.put(
-      `${process.env.REACT_APP_DEV_API}/products/${product._id}`,
+      `${process.env.REACT_APP_PROD_API}/products/${product._id}`,
       product,
       config
     )
@@ -210,7 +210,7 @@ export const productReviewCreateAction =
       }
 
       await axios.post(
-        `${process.env.REACT_APP_DEV_API}/products/${productId}/reviews`,
+        `${process.env.REACT_APP_PROD_API}/products/${productId}/reviews`,
         review,
         config
       )

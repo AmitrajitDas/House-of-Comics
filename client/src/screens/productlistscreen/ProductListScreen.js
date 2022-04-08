@@ -64,7 +64,7 @@ const ProductListScreen = ({ history }) => {
     if (successCreate) {
       history.push(`/admin/product/${createdProduct._id}/edit`)
     } else {
-      fetch(`${process.env.REACT_APP_DEV_API}/products/list`)
+      fetch(`${process.env.REACT_APP_PROD_API}/products/list`)
         .then((res) => res.json())
         .then((json) => {
           setProducts(json)

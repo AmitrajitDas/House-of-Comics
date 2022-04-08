@@ -38,7 +38,7 @@ export const orderCreateAction = (order) => async (dispatch, getState) => {
     }
 
     const { data } = await axios.post(
-      `${process.env.REACT_APP_DEV_API}/orders`,
+      `${process.env.REACT_APP_PROD_API}/orders`,
       order,
       config
     )
@@ -75,7 +75,7 @@ export const orderDetailsAction = (id) => async (dispatch, getState) => {
     }
 
     const { data } = await axios.get(
-      `${process.env.REACT_APP_DEV_API}/orders/${id}`,
+      `${process.env.REACT_APP_PROD_API}/orders/${id}`,
       config
     )
 
@@ -111,7 +111,7 @@ export const orderUserListAction = () => async (dispatch, getState) => {
     }
 
     const { data } = await axios.get(
-      `${process.env.REACT_APP_DEV_API}/orders/myorders`,
+      `${process.env.REACT_APP_PROD_API}/orders/myorders`,
       config
     )
 
@@ -147,7 +147,7 @@ export const orderListAction = () => async (dispatch, getState) => {
     }
 
     const { data } = await axios.get(
-      `${process.env.REACT_APP_DEV_API}/orders`,
+      `${process.env.REACT_APP_PROD_API}/orders`,
       config
     )
 
@@ -185,7 +185,7 @@ export const orderPaymentAction =
       }
 
       const { data } = await axios.put(
-        `${process.env.REACT_APP_DEV_API}/orders/${orderId}/payment`,
+        `${process.env.REACT_APP_PROD_API}/orders/${orderId}/payment`,
         paymentResult,
         config
       )
@@ -222,7 +222,7 @@ export const orderDeliverAction = (orderId) => async (dispatch, getState) => {
     }
 
     const { data } = await axios.put(
-      `${process.env.REACT_APP_DEV_API}/orders/${orderId}/delivery`,
+      `${process.env.REACT_APP_PROD_API}/orders/${orderId}/delivery`,
       {},
       config
     )

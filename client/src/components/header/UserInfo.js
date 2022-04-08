@@ -68,7 +68,7 @@ const UserInfo = ({ userData }) => {
         style={{ color: '#161616', marginTop: '5px' }}
       >
         <AccountCircleIcon style={{ marginRight: '10px' }} />
-        {userData.name.split(' ')[0]}
+        {userData && userData.name.split(' ')[0]}
         <ArrowDropDownIcon />
       </Button>
       <Popper

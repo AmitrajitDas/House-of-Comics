@@ -22,7 +22,7 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import Loader from '../../components/loader/Loader'
 import RedAlertBox from '../../components/alert/RedAlert'
 import {
-  productListAction,
+  productListAllAction,
   productDetailsAction,
   productDeleteAction,
   productCreateAction,
@@ -34,7 +34,13 @@ const ProductListScreen = ({ history }) => {
   const classes = useStyles()
   const dispatch = useDispatch()
 
-  const { loading, products, error } = useSelector((state) => state.productList)
+  const [products, setProducts] = useState([])
+
+  const {
+    loading,
+    products: old,
+    error,
+  } = useSelector((state) => state.productListAll)
   const { userData } = useSelector((state) => state.userLogin)
   const {
     loading: loadingDelete,
@@ -58,7 +64,11 @@ const ProductListScreen = ({ history }) => {
     if (successCreate) {
       history.push(`/admin/product/${createdProduct._id}/edit`)
     } else {
-      dispatch(productListAction())
+      fetch(`${process.env.REACT_APP_DEV_API}/products/list`)
+        .then((res) => res.json())
+        .then((json) => {
+          setProducts(json)
+        })
     }
   }, [
     dispatch,

@@ -5,6 +5,9 @@ import {
   PRODUCT_LIST_REQUEST,
   PRODUCT_LIST_SUCCESS,
   PRODUCT_LIST_FAILURE,
+  PRODUCT_LIST_ALL_REQUEST,
+  PRODUCT_LIST_ALL_SUCCESS,
+  PRODUCT_LIST_ALL_FAILURE,
   PRODUCT_DELETE_REQUEST,
   PRODUCT_DELETE_SUCCESS,
   PRODUCT_DELETE_FAILURE,
@@ -32,6 +35,26 @@ export const productListAction = (keyword, pageNumber) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: PRODUCT_LIST_FAILURE,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    })
+  }
+}
+
+export const productListAllAction = () => async (dispatch) => {
+  try {
+    dispatch({ type: PRODUCT_LIST_ALL_REQUEST })
+
+    const { data } = await axios.get(
+      `${process.env.REACT_APP_DEV_API}/products/list`
+    )
+
+    dispatch({ type: PRODUCT_LIST_ALL_SUCCESS, payload: data })
+  } catch (error) {
+    dispatch({
+      type: PRODUCT_LIST_ALL_FAILURE,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

@@ -8,6 +8,9 @@ import {
   PRODUCT_DELETE_REQUEST,
   PRODUCT_DELETE_SUCCESS,
   PRODUCT_DELETE_FAILURE,
+  PRODUCT_LIST_ALL_REQUEST,
+  PRODUCT_LIST_ALL_SUCCESS,
+  PRODUCT_LIST_ALL_FAILURE,
   PRODUCT_CREATE_REQUEST,
   PRODUCT_CREATE_SUCCESS,
   PRODUCT_CREATE_FAILURE,
@@ -61,6 +64,31 @@ export const productListReducer = (state = { products: [] }, action) => {
     }
 
     case PRODUCT_LIST_FAILURE: {
+      return { loading: false, error: action.payload }
+    }
+
+    default: {
+      return state
+    }
+  }
+}
+
+export const productListAllReducer = (state = { products: [] }, action) => {
+  switch (action.type) {
+    case PRODUCT_LIST_ALL_REQUEST: {
+      return { loading: true, ...state }
+    }
+
+    case PRODUCT_LIST_ALL_SUCCESS: {
+      return {
+        loading: false,
+        products: action.payload.products,
+        pages: action.payload.pages,
+        page: action.payload.page,
+      }
+    }
+
+    case PRODUCT_LIST_ALL_FAILURE: {
       return { loading: false, error: action.payload }
     }
 

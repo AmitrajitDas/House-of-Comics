@@ -44,7 +44,7 @@ const OrderScreen = ({ match }) => {
   useEffect(() => {
     const paypalScript = async () => {
       const { data: clientId } = await axios.get(
-        `${process.env.REACT_APP_PROD_API}/config/paypal`
+        `${process.env.REACT_APP_DEV_API}/config/paypal`
       )
       const script = document.createElement('script')
       script.type = 'text/javascript'
